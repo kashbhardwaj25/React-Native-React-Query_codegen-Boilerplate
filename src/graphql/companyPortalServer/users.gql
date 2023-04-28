@@ -1,0 +1,25 @@
+mutation SignUp(
+  $name: String!
+  $email: String!
+  $password: String!
+  $workspaceName: String!
+  $uniqueName: String!
+) {
+  signup(
+    name: $name
+    email: $email
+    password: $password
+    workspaceName: $workspaceName
+    uniqueName: $uniqueName
+  ) {
+    message
+  }
+}
+
+mutation SignIn($email: String!, $password: String!) {
+  signin(email: $email, password: $password) {
+    success
+    token
+    expiresIn
+  }
+}
