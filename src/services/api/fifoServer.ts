@@ -1,19 +1,29 @@
 //@ts-nocheck
-import { GraphQLClient } from 'graphql-request';
-import { RequestInit } from 'graphql-request/dist/types.dom';
-import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import {GraphQLClient} from 'graphql-request';
+import {RequestInit} from 'graphql-request/dist/types.dom';
+import {useMutation, UseMutationOptions} from '@tanstack/react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends {[key: string]: unknown}> = {[K in keyof T]: T[K]};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 
-function fetcher<TData, TVariables extends { [key: string]: any }>(client: GraphQLClient, query: string, variables?: TVariables, requestHeaders?: RequestInit['headers']) {
-  return async (): Promise<TData> => client.request({
-    document: query,
-    variables,
-    requestHeaders
-  });
+function fetcher<TData, TVariables extends {[key: string]: any}>(
+  client: GraphQLClient,
+  query: string,
+  variables?: TVariables,
+  requestHeaders?: RequestInit['headers'],
+) {
+  return async (): Promise<TData> =>
+    client.request({
+      document: query,
+      variables,
+      requestHeaders,
+    });
 }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -45,14 +55,14 @@ export enum AllowedUpdateActions {
   Add = 'ADD',
   Delete = 'DELETE',
   Edit = 'EDIT',
-  None = 'NONE'
+  None = 'NONE',
 }
 
 export enum AssignRemoveRole {
   Admin = 'ADMIN',
   Member = 'MEMBER',
   Moderator = 'MODERATOR',
-  Owner = 'OWNER'
+  Owner = 'OWNER',
 }
 
 export type AttendeeConcent = {
@@ -65,7 +75,7 @@ export type AttendeeConcent = {
 export enum AttendeeConcentStatus {
   Accepted = 'ACCEPTED',
   Declined = 'DECLINED',
-  Pending = 'PENDING'
+  Pending = 'PENDING',
 }
 
 export type BadgeInfo = {
@@ -164,7 +174,7 @@ export enum DomainStatus {
   Failed = 'FAILED',
   Initialized = 'INITIALIZED',
   InProgress = 'IN_PROGRESS',
-  Success = 'SUCCESS'
+  Success = 'SUCCESS',
 }
 
 export type Draft = {
@@ -185,7 +195,7 @@ export type DraftMedia = {
 };
 
 export enum DraftType {
-  Post = 'POST'
+  Post = 'POST',
 }
 
 export type FetchFollowerResponse = {
@@ -260,7 +270,7 @@ export enum GetIconType {
   NonSocial = 'NON_SOCIAL',
   Reddit = 'REDDIT',
   Twitter = 'TWITTER',
-  Youtube = 'YOUTUBE'
+  Youtube = 'YOUTUBE',
 }
 
 export type GetOnboardingLinkResponse = {
@@ -277,19 +287,19 @@ export enum GetPostType {
   Live = 'LIVE',
   LiveAndScheduled = 'LIVE_AND_SCHEDULED',
   PostAndRoom = 'POST_AND_ROOM',
-  Scheduled = 'SCHEDULED'
+  Scheduled = 'SCHEDULED',
 }
 
 export enum GetRoomType {
   All = 'ALL',
   Live = 'LIVE',
   Past = 'PAST',
-  Scheduled = 'SCHEDULED'
+  Scheduled = 'SCHEDULED',
 }
 
 export enum GetSpacePostType {
   Post = 'POST',
-  Room = 'ROOM'
+  Room = 'ROOM',
 }
 
 export type GetUserBankDetailsResponse = {
@@ -302,7 +312,7 @@ export type GetUserBankDetailsResponse = {
 
 export enum GetUserPostType {
   Post = 'POST',
-  Room = 'ROOM'
+  Room = 'ROOM',
 }
 
 export type InterestAndLikesResponse = {
@@ -343,7 +353,7 @@ export type Link = {
 
 export enum LinkType {
   FavLink = 'FAV_LINK',
-  SocialLinks = 'SOCIAL_LINKS'
+  SocialLinks = 'SOCIAL_LINKS',
 }
 
 export type ListTransactionResponse = {
@@ -363,7 +373,7 @@ export type LoungeRoom = {
 
 export enum ManageLinkAction {
   Add = 'ADD',
-  Delete = 'DELETE'
+  Delete = 'DELETE',
 }
 
 export type ManageLinksPayload = {
@@ -384,13 +394,13 @@ export type ManageSpaceInvitationResponse = {
 
 export enum ManageSpaceRoleAction {
   Accepted = 'ACCEPTED',
-  Rejected = 'REJECTED'
+  Rejected = 'REJECTED',
 }
 
 export enum ManageTabsAction {
   Add = 'ADD',
   Delete = 'DELETE',
-  Update = 'UPDATE'
+  Update = 'UPDATE',
 }
 
 export type ManageTabsPayload = {
@@ -413,13 +423,13 @@ export type MediaPage = {
 
 export enum MediaSharedByAction {
   Set = 'SET',
-  Unset = 'UNSET'
+  Unset = 'UNSET',
 }
 
 export enum MediaTypes {
   Post = 'POST',
   Space = 'SPACE',
-  User = 'USER'
+  User = 'USER',
 }
 
 export type MediaUpdate = {
@@ -550,22 +560,18 @@ export type Mutation = {
   withdrawRequest: Scalars['String'];
 };
 
-
 export type MutationAcceptRaiseHandArgs = {
   userId: Scalars['String'];
 };
-
 
 export type MutationAddDraftMediaArgs = {
   media: Array<Scalars['Upload']>;
   type?: InputMaybe<MediaTypes>;
 };
 
-
 export type MutationAllowGuestUnmuteArgs = {
   canGuestUnmute: Scalars['Boolean'];
 };
-
 
 export type MutationAssignOrRemoveSpaceRoleArgs = {
   action: ManageSpaceRoleAction;
@@ -574,39 +580,32 @@ export type MutationAssignOrRemoveSpaceRoleArgs = {
   tagName: Scalars['String'];
 };
 
-
 export type MutationBlockUserAdminArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationBlockUserByIdArgs = {
   blockedUserId: Scalars['String'];
   isBlocked: Scalars['Boolean'];
 };
 
-
 export type MutationChangeAttendeeConcentStatusArgs = {
   status?: InputMaybe<AttendeeConcentStatus>;
 };
-
 
 export type MutationChangeTabPositionArgs = {
   id: Scalars['String'];
   newOrder: Scalars['Int'];
 };
 
-
 export type MutationClearSearchDataArgs = {
   idx: SearchType;
 };
-
 
 export type MutationCreateDraftArgs = {
   content: Scalars['JSON'];
   type: DraftType;
 };
-
 
 export type MutationCreatePostArgs = {
   childPosts: Array<CreatePostPayload>;
@@ -618,18 +617,15 @@ export type MutationCreatePostArgs = {
   visibility?: InputMaybe<PostVisibility>;
 };
 
-
 export type MutationCreatePostCommentArgs = {
   comment: Scalars['String'];
   postId: Scalars['ID'];
 };
 
-
 export type MutationCreatePostCommentReplyArgs = {
   content: Scalars['String'];
   postCommentId: Scalars['ID'];
 };
-
 
 export type MutationCreateRoomArgs = {
   description: Scalars['String'];
@@ -643,7 +639,6 @@ export type MutationCreateRoomArgs = {
   visibility?: InputMaybe<PostVisibility>;
 };
 
-
 export type MutationCreateSpaceArgs = {
   coverImage?: InputMaybe<Scalars['String']>;
   coverImageUpload?: InputMaybe<Scalars['Upload']>;
@@ -656,94 +651,76 @@ export type MutationCreateSpaceArgs = {
   topics?: InputMaybe<Array<Scalars['String']>>;
 };
 
-
 export type MutationCreateTicketArgs = {
   description: Scalars['String'];
   media?: InputMaybe<Scalars['Upload']>;
   name: Scalars['String'];
 };
 
-
 export type MutationDeleteDraftByIdArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationDeleteDraftMediaArgs = {
   id: Scalars['ID'];
 };
 
-
 export type MutationDeletePostArgs = {
   postId: Scalars['ID'];
 };
-
 
 export type MutationDeletePostByAdminArgs = {
   postId: Scalars['String'];
 };
 
-
 export type MutationDeletePostCommentArgs = {
   postCommentId: Scalars['ID'];
 };
-
 
 export type MutationDeletePostCommentReplyArgs = {
   postCommentReplyId: Scalars['ID'];
 };
 
-
 export type MutationDeleteRoomArgs = {
   roomId: Scalars['String'];
 };
-
 
 export type MutationDeleteRoomByAdminArgs = {
   roomId: Scalars['String'];
 };
 
-
 export type MutationDeleteRoomChatMessageArgs = {
   id: Scalars['ID'];
 };
-
 
 export type MutationDeleteSpaceArgs = {
   id: Scalars['ID'];
 };
 
-
 export type MutationDeleteTicketByIdArgs = {
   id: Scalars['String'];
 };
 
-
 export type MutationDeleteUserArgs = {
   verificationCode: Scalars['String'];
 };
-
 
 export type MutationDeleteUsersArgs = {
   password: Scalars['String'];
   phoneNumbers?: InputMaybe<Array<Scalars['String']>>;
 };
 
-
 export type MutationDelinkDomainArgs = {
   domain: Scalars['String'];
 };
-
 
 export type MutationFollowSpaceArgs = {
   spaceId: Scalars['String'];
 };
 
-
 export type MutationFollowUserArgs = {
   followUserId: Scalars['ID'];
 };
-
 
 export type MutationHandlePaidHostRequestArgs = {
   id: Scalars['String'];
@@ -751,69 +728,57 @@ export type MutationHandlePaidHostRequestArgs = {
   statusResponse: StatusResponseType;
 };
 
-
 export type MutationIncrementClickLinkSourceCountArgs = {
   utmReference?: InputMaybe<Scalars['String']>;
   utmSource?: InputMaybe<Scalars['String']>;
 };
 
-
 export type MutationInitializeDomainArgs = {
   domain: Scalars['String'];
 };
-
 
 export type MutationJoinBotsToRoomArgs = {
   count?: InputMaybe<Scalars['Int']>;
   roomId: Scalars['String'];
 };
 
-
 export type MutationJoinRoomArgs = {
   roomId: Scalars['String'];
   sessionId: Scalars['String'];
 };
 
-
 export type MutationLeaveRoomArgs = {
   nextHostId?: InputMaybe<Scalars['String']>;
 };
 
-
 export type MutationLeaveSpaceArgs = {
   tagName: Scalars['String'];
 };
-
 
 export type MutationLikeDislikePostArgs = {
   isLiked: Scalars['Boolean'];
   postId: Scalars['ID'];
 };
 
-
 export type MutationLikeDislikePostCommentArgs = {
   commentId: Scalars['ID'];
   isLiked?: InputMaybe<Scalars['Boolean']>;
 };
-
 
 export type MutationLikeDislikePostCommentReplyArgs = {
   isLiked?: InputMaybe<Scalars['Boolean']>;
   replyId: Scalars['ID'];
 };
 
-
 export type MutationManageLinksArgs = {
   links: Array<ManageLinksPayload>;
   spaceId?: InputMaybe<Scalars['String']>;
 };
 
-
 export type MutationManageSpaceInvitationArgs = {
   status: ManageSpaceRoleAction;
   tagName: Scalars['String'];
 };
-
 
 export type MutationManageSpaceRoleRequestArgs = {
   action: ManageSpaceRoleAction;
@@ -822,97 +787,79 @@ export type MutationManageSpaceRoleRequestArgs = {
   tagName: Scalars['String'];
 };
 
-
 export type MutationManageTabsArgs = {
   spaceId?: InputMaybe<Scalars['String']>;
   tabs: Array<ManageTabsPayload>;
 };
-
 
 export type MutationMarkRoomInterestArgs = {
   isInterestedRoom: Scalars['Boolean'];
   roomId: Scalars['String'];
 };
 
-
 export type MutationMediaUpdateArgs = {
   pageNumber: Scalars['Int'];
 };
-
 
 export type MutationMediaUploadArgs = {
   media: Scalars['Upload'];
   type: Scalars['String'];
 };
 
-
 export type MutationMuteUnmutePostArgs = {
   isMuted: Scalars['Boolean'];
   postId: Scalars['ID'];
 };
 
-
 export type MutationOnboardUserArgs = {
   onboardUser: OnboardUserInput;
 };
-
 
 export type MutationPayRoomTicketFeeArgs = {
   roomId: Scalars['String'];
 };
 
-
 export type MutationRefreshTokenArgs = {
   refreshToken: Scalars['String'];
 };
-
 
 export type MutationRefundTicketFeeArgs = {
   reasonForRefund: Scalars['String'];
   roomId: Scalars['String'];
 };
 
-
 export type MutationReindexSearchDataArgs = {
   idx: SearchType;
 };
-
 
 export type MutationRemoveTaggedPostArgs = {
   postId: Scalars['ID'];
 };
 
-
 export type MutationResendCodeSignupArgs = {
   phoneNumber: Scalars['String'];
 };
 
-
 export type MutationResendOtpSigninArgs = {
   phoneNumber: Scalars['String'];
 };
-
 
 export type MutationResetPasswordArgs = {
   newPassword: Scalars['String'];
   verificationCode: Scalars['String'];
 };
 
-
 export type MutationRetryDomainLinkingArgs = {
   domain: Scalars['String'];
 };
-
 
 export type MutationRoomMusicHandlingArgs = {
   status?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationSendRoomChatMessageArgs = {
   text: Scalars['String'];
 };
-
 
 export type MutationSendSpaceInvitationArgs = {
   role: SpaceInvitationRole;
@@ -920,27 +867,22 @@ export type MutationSendSpaceInvitationArgs = {
   users: Array<Scalars['String']>;
 };
 
-
 export type MutationSendVerificationCodePhoneArgs = {
   phoneNumber: Scalars['String'];
 };
-
 
 export type MutationSetDomainArgs = {
   payload: SetDomainInput;
 };
 
-
 export type MutationSetDomainStatusArgs = {
   domain: Scalars['String'];
 };
-
 
 export type MutationSetMediaSharedByArgs = {
   action: MediaSharedByAction;
   mediaSharedById: Scalars['String'];
 };
-
 
 export type MutationSetNotificationSettingArgs = {
   interval?: InputMaybe<NotificationInterval>;
@@ -948,33 +890,27 @@ export type MutationSetNotificationSettingArgs = {
   type: NotificationSettingType;
 };
 
-
 export type MutationSetNotificationsWatchedArgs = {
   highWaterMark: Scalars['Date'];
 };
-
 
 export type MutationSetRoomRecordingStatusArgs = {
   status: RecordingStatus;
 };
 
-
 export type MutationSetTimezoneArgs = {
   userTimeZone: Scalars['String'];
 };
-
 
 export type MutationSetUserTypeArgs = {
   userId: Scalars['String'];
   userType: Scalars['String'];
 };
 
-
 export type MutationSigninArgs = {
   password: Scalars['String'];
   phoneNumber: Scalars['String'];
 };
-
 
 export type MutationSignupArgs = {
   name: Scalars['String'];
@@ -986,55 +922,45 @@ export type MutationSignupArgs = {
   userTimeZone: Scalars['String'];
 };
 
-
 export type MutationSpaceRoleRequestArgs = {
   role: SpaceRequestRole;
   tagName: Scalars['String'];
 };
 
-
 export type MutationStartAgoraStreamArgs = {
   canGuestUnmute?: InputMaybe<Scalars['Boolean']>;
 };
-
 
 export type MutationTransferPrimaryOwnershipArgs = {
   memberId: Scalars['String'];
   tagName: Scalars['String'];
 };
 
-
 export type MutationUnblockUserAdminArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationUnfollowSpaceArgs = {
   spaceId: Scalars['String'];
 };
 
-
 export type MutationUnfollowUserArgs = {
   unfollowUserId: Scalars['ID'];
 };
 
-
 export type MutationUnsubscribeEmailNotificationsArgs = {
   token: Scalars['String'];
 };
-
 
 export type MutationUpdateDraftByIdArgs = {
   content: Scalars['JSON'];
   id: Scalars['String'];
 };
 
-
 export type MutationUpdateFifoConfigValueArgs = {
   id: Scalars['Int'];
   value: Scalars['String'];
 };
-
 
 export type MutationUpdatePostV2Args = {
   childPosts: Array<UpdatePostPayload>;
@@ -1048,7 +974,6 @@ export type MutationUpdatePostV2Args = {
   visibility?: InputMaybe<PostVisibility>;
 };
 
-
 export type MutationUpdateRoomArgs = {
   description?: InputMaybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -1059,12 +984,10 @@ export type MutationUpdateRoomArgs = {
   visibility?: InputMaybe<PostVisibility>;
 };
 
-
 export type MutationUpdateSearchSettingArgs = {
   idx: SearchType;
   settings: Scalars['String'];
 };
-
 
 export type MutationUpdateSpaceArgs = {
   coverImage?: InputMaybe<Scalars['String']>;
@@ -1077,66 +1000,77 @@ export type MutationUpdateSpaceArgs = {
   topics?: InputMaybe<Array<Scalars['String']>>;
 };
 
-
 export type MutationUpdateTicketByIdArgs = {
   id: Scalars['String'];
   name: Scalars['String'];
 };
 
-
 export type MutationUpdateUserArgs = {
   updateUser: UpdateUserInput;
 };
-
 
 export type MutationUpdateUserBannedRoomStatusArgs = {
   status: Scalars['Boolean'];
   userId: Scalars['String'];
 };
 
-
 export type MutationUpdateUserEmailArgs = {
   email: Scalars['String'];
 };
 
-
 export type MutationUpdateUserNameArgs = {
   username: Scalars['String'];
 };
-
 
 export type MutationVerifyCodePhoneArgs = {
   code: Scalars['String'];
   phoneNumber: Scalars['String'];
 };
 
-
 export type MutationVerifyPhoneNumberArgs = {
   code: Scalars['String'];
   phoneNumber: Scalars['String'];
 };
 
-
 export type MutationVerifyUserEmailArgs = {
   token: Scalars['String'];
 };
-
 
 export type MutationWithdrawInvitationArgs = {
   spaceId: Scalars['String'];
   username: Scalars['String'];
 };
 
-
 export type MutationWithdrawRequestArgs = {
   tagName: Scalars['String'];
 };
 
-export type Notification = DeletePaidRoomNotification | FollowUserNotification | PaidHostRequestNotification | PaymentNotification | PostCommentLikeNotification | PostCommentNotification | PostCommentReplyLikeNotification | PostCommentReplyNotification | PostLikeNotification | PostQuoteNotification | PostRepostNotification | RefundNotification | RoomStartingNotification | SpaceFollowNotification | SpaceInviteApprovalNotification | SpaceMemberApprovalNotification | SpaceMemberNotification | SpaceModeratorApprovalNotification | SpaceModeratorNotification | TagPostNotification | UpdatePaidRoomNotification;
+export type Notification =
+  | DeletePaidRoomNotification
+  | FollowUserNotification
+  | PaidHostRequestNotification
+  | PaymentNotification
+  | PostCommentLikeNotification
+  | PostCommentNotification
+  | PostCommentReplyLikeNotification
+  | PostCommentReplyNotification
+  | PostLikeNotification
+  | PostQuoteNotification
+  | PostRepostNotification
+  | RefundNotification
+  | RoomStartingNotification
+  | SpaceFollowNotification
+  | SpaceInviteApprovalNotification
+  | SpaceMemberApprovalNotification
+  | SpaceMemberNotification
+  | SpaceModeratorApprovalNotification
+  | SpaceModeratorNotification
+  | TagPostNotification
+  | UpdatePaidRoomNotification;
 
 export enum NotificationInterval {
   Daily = 'daily',
-  Weekly = 'weekly'
+  Weekly = 'weekly',
 }
 
 export type NotificationPaginatedResponse = {
@@ -1159,7 +1093,7 @@ export type NotificationSetting = {
 
 export enum NotificationSettingType {
   FollowUserNotificationSetting = 'FollowUserNotificationSetting',
-  RoomStartingNotificationSetting = 'RoomStartingNotificationSetting'
+  RoomStartingNotificationSetting = 'RoomStartingNotificationSetting',
 }
 
 export type Onboard = {
@@ -1174,7 +1108,7 @@ export type OnlineMessage = {
 
 export enum OrderByDirType {
   Asc = 'ASC',
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 export type PaidHostRequestNotification = {
@@ -1418,7 +1352,7 @@ export enum PostType {
   QuotePost = 'QUOTE_POST',
   Repost = 'REPOST',
   RoomPost = 'ROOM_POST',
-  SimplePost = 'SIMPLE_POST'
+  SimplePost = 'SIMPLE_POST',
 }
 
 export type PostVariableQualityMediaUrl = {
@@ -1430,7 +1364,7 @@ export type PostVariableQualityMediaUrl = {
 
 export enum PostVisibility {
   Private = 'PRIVATE',
-  Public = 'PUBLIC'
+  Public = 'PUBLIC',
 }
 
 export type PublicRoomPostsPaginationResponse = {
@@ -1511,7 +1445,6 @@ export type Query = {
   userSearch: UserSearchResponse;
 };
 
-
 export type QueryListAllTransactionsArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
@@ -1520,7 +1453,6 @@ export type QueryListAllTransactionsArgs = {
   status?: InputMaybe<TransactionStatus>;
   type?: InputMaybe<TransactionType>;
 };
-
 
 export type QueryListRoomTransactionsArgs = {
   limit?: InputMaybe<Scalars['Int']>;
@@ -1532,67 +1464,55 @@ export type QueryListRoomTransactionsArgs = {
   type?: InputMaybe<TransactionType>;
 };
 
-
 export type QueryCheckIfUsernameAlreadyExistsArgs = {
   username: Scalars['String'];
 };
-
 
 export type QueryCheckTagNameArgs = {
   tagName: Scalars['String'];
 };
 
-
 export type QueryFetchFollowersArgs = {
   searchQuery: SearchInput;
 };
-
 
 export type QueryFetchFollowingArgs = {
   searchQuery: SearchInput;
 };
 
-
 export type QueryFetchSpaceFollowersArgs = {
   fetchSpaceFollowers: FetchSpaceFollowerQuery;
 };
-
 
 export type QueryGetAllDraftsArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   type: Scalars['String'];
 };
 
-
 export type QueryGetAllInvitationsArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
 };
-
 
 export type QueryGetAllMySpacesArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
 };
 
-
 export type QueryGetAllPaidRoomsArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
 };
 
-
 export type QueryGetAllTicketsArgs = {
   limit?: InputMaybe<Scalars['Int']>;
 };
-
 
 export type QueryGetCommentAndReplyLikesArgs = {
   commentId: Scalars['String'];
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
 };
-
 
 export type QueryGetCommentRepliesArgs = {
   commentId: Scalars['String'];
@@ -1601,39 +1521,32 @@ export type QueryGetCommentRepliesArgs = {
   offset?: InputMaybe<Scalars['Int']>;
 };
 
-
 export type QueryGetDiscoverSpacesArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
 };
 
-
 export type QueryGetDomainArgs = {
   domain: Scalars['String'];
 };
-
 
 export type QueryGetDomainBySlugArgs = {
   slug: Scalars['String'];
   type: TargetType;
 };
 
-
 export type QueryGetDraftByIdArgs = {
   id: Scalars['String'];
 };
-
 
 export type QueryGetMyBadgeInfoArgs = {
   badgeName: Scalars['String'];
 };
 
-
 export type QueryGetMyBadgesArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
 };
-
 
 export type QueryGetNotificationsArgs = {
   isWatched?: InputMaybe<Scalars['Boolean']>;
@@ -1642,18 +1555,15 @@ export type QueryGetNotificationsArgs = {
   type?: InputMaybe<Scalars['String']>;
 };
 
-
 export type QueryGetNotificationsCountArgs = {
   isWatched?: InputMaybe<Scalars['Boolean']>;
   type?: InputMaybe<Array<Scalars['String']>>;
 };
 
-
 export type QueryGetPaidHostsArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
 };
-
 
 export type QueryGetPostCommentsArgs = {
   fetchUserLikeStatus?: InputMaybe<Scalars['Boolean']>;
@@ -1662,11 +1572,9 @@ export type QueryGetPostCommentsArgs = {
   postId: Scalars['String'];
 };
 
-
 export type QueryGetPostDetailsArgs = {
   postId: Scalars['String'];
 };
-
 
 export type QueryGetPostLikeArgs = {
   limit?: InputMaybe<Scalars['Int']>;
@@ -1674,20 +1582,17 @@ export type QueryGetPostLikeArgs = {
   postId: Scalars['String'];
 };
 
-
 export type QueryGetPostRepostAndQuotePostUsersArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   postId: Scalars['String'];
 };
 
-
 export type QueryGetPostsArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   timestamp?: InputMaybe<Scalars['String']>;
   type: GetPostType;
 };
-
 
 export type QueryGetPostsBySpaceArgs = {
   limit?: InputMaybe<Scalars['Int']>;
@@ -1696,20 +1601,17 @@ export type QueryGetPostsBySpaceArgs = {
   type: GetSpacePostType;
 };
 
-
 export type QueryGetPostsByTabIdArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   tabId: Scalars['String'];
 };
 
-
 export type QueryGetPostsByTaggedInArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   username: Scalars['String'];
 };
-
 
 export type QueryGetPostsByUsernameArgs = {
   limit?: InputMaybe<Scalars['Int']>;
@@ -1719,12 +1621,10 @@ export type QueryGetPostsByUsernameArgs = {
   username: Scalars['String'];
 };
 
-
 export type QueryGetPostsCountArgs = {
   timestamp: Scalars['String'];
   type: GetPostType;
 };
-
 
 export type QueryGetPublicRoomPostsArgs = {
   limit?: InputMaybe<Scalars['Int']>;
@@ -1732,105 +1632,85 @@ export type QueryGetPublicRoomPostsArgs = {
   type: GetRoomType;
 };
 
-
 export type QueryGetRoomChatMessagesArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   timestamp?: InputMaybe<Scalars['String']>;
 };
 
-
 export type QueryGetRoomPostArgs = {
   roomId: Scalars['String'];
 };
-
 
 export type QueryGetSearchSettingArgs = {
   idx: SearchType;
 };
 
-
 export type QueryGetSpaceArgs = {
   tagName: Scalars['String'];
 };
-
 
 export type QueryGetSpaceRoleArgs = {
   fetchSpaceRoleQuery: FetchSpaceRoleQuery;
 };
 
-
 export type QueryGetSpaceTagNamesForMembersArgs = {
   tagName: Scalars['String'];
 };
-
 
 export type QueryGetSpacesByUsernameArgs = {
   username: Scalars['String'];
 };
 
-
 export type QueryGetTabsByTagnameArgs = {
   tagName: Scalars['String'];
 };
-
 
 export type QueryGetTabsByUsernameArgs = {
   username: Scalars['String'];
 };
 
-
 export type QueryGetTicketByIdArgs = {
   id: Scalars['String'];
 };
-
 
 export type QueryGetTopSpacesArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
 };
 
-
 export type QueryGetTransactionByIdArgs = {
   id?: InputMaybe<Scalars['String']>;
 };
-
 
 export type QueryGetUrlMetaDataArgs = {
   url: Scalars['String'];
 };
 
-
 export type QueryGetUserByIdBulkArgs = {
   userIds?: InputMaybe<Array<Scalars['String']>>;
 };
-
 
 export type QueryGetUserByUsernameArgs = {
   username: Scalars['String'];
 };
 
-
 export type QueryGetUserFollowSpacesArgs = {
   followedSpaceQuery: FetchUserFollowedSpaces;
 };
-
 
 export type QueryPostSearchArgs = {
   postSearchQuery: SearchPostInput;
 };
 
-
 export type QueryRoomSearchArgs = {
   roomSearchQuery: SearchRoomInput;
 };
-
 
 export type QuerySearchQueryArgs = {
   areaOfInterests?: InputMaybe<Array<InputMaybe<AreaOfInterestsInput>>>;
   keywords?: InputMaybe<Scalars['String']>;
 };
-
 
 export type QuerySearchUserArgs = {
   key: Scalars['String'];
@@ -1838,11 +1718,9 @@ export type QuerySearchUserArgs = {
   offset?: InputMaybe<Scalars['Int']>;
 };
 
-
 export type QuerySpaceSearchArgs = {
   spaceSearchQuery: SearchSpaceInput;
 };
-
 
 export type QueryUserSearchArgs = {
   userSearchQuery: SearchUsersInput;
@@ -1858,12 +1736,12 @@ export type RaisedHand = {
 export enum RecordingStatus {
   RecordingOff = 'RECORDING_OFF',
   RecordingOn = 'RECORDING_ON',
-  RecordingPause = 'RECORDING_PAUSE'
+  RecordingPause = 'RECORDING_PAUSE',
 }
 
 export enum ReferenceType {
   Space = 'SPACE',
-  User = 'USER'
+  User = 'USER',
 }
 
 export type RefundNotification = {
@@ -1971,7 +1849,7 @@ export type RoomChatMessage = {
 export enum RoomChatMessageType {
   LowerHand = 'LOWER_HAND',
   RaiseHand = 'RAISE_HAND',
-  Text = 'TEXT'
+  Text = 'TEXT',
 }
 
 export type RoomChatPaginatedResponse = {
@@ -2024,7 +1902,7 @@ export enum RoomTypes {
   Instant = 'INSTANT',
   Lounge = 'LOUNGE',
   Podcast = 'PODCAST',
-  Scheduled = 'SCHEDULED'
+  Scheduled = 'SCHEDULED',
 }
 
 export type SearchInput = {
@@ -2156,7 +2034,7 @@ export enum SpaceInvitationRole {
   Admin = 'ADMIN',
   Member = 'MEMBER',
   Moderator = 'MODERATOR',
-  Owner = 'OWNER'
+  Owner = 'OWNER',
 }
 
 export type SpaceInviteApprovalNotification = {
@@ -2195,7 +2073,7 @@ export enum SpaceMemberStatus {
   Moderator = 'MODERATOR',
   NotAMember = 'NOT_A_MEMBER',
   Owner = 'OWNER',
-  PrimaryOwner = 'PRIMARY_OWNER'
+  PrimaryOwner = 'PRIMARY_OWNER',
 }
 
 export type SpaceModeratorApprovalNotification = {
@@ -2220,7 +2098,7 @@ export type SpaceModeratorNotification = {
 
 export enum SpaceRequestRole {
   Member = 'MEMBER',
-  Moderator = 'MODERATOR'
+  Moderator = 'MODERATOR',
 }
 
 export type SpaceResponseForInvitation = {
@@ -2240,7 +2118,7 @@ export type SpaceResult = {
 
 export enum SpaceRoleFilterStatus {
   Accepted = 'ACCEPTED',
-  Pending = 'PENDING'
+  Pending = 'PENDING',
 }
 
 export enum SpaceRoles {
@@ -2248,7 +2126,7 @@ export enum SpaceRoles {
   Member = 'MEMBER',
   Moderator = 'MODERATOR',
   Owner = 'OWNER',
-  PrimaryOwner = 'PRIMARY_OWNER'
+  PrimaryOwner = 'PRIMARY_OWNER',
 }
 
 export type SpaceSearchResponse = {
@@ -2262,7 +2140,7 @@ export type SpaceSearchResponse = {
 export enum SpaceType {
   Open = 'OPEN',
   Plus = 'PLUS',
-  Pro = 'PRO'
+  Pro = 'PRO',
 }
 
 export type SpacesPaginatedResponse = {
@@ -2277,7 +2155,7 @@ export enum StatusResponseType {
   Accepted = 'ACCEPTED',
   Pending = 'PENDING',
   Rejected = 'REJECTED',
-  Revoke = 'REVOKE'
+  Revoke = 'REVOKE',
 }
 
 export type Subscription = {
@@ -2285,7 +2163,6 @@ export type Subscription = {
   newRoomChatMessages: Array<RoomChatMessage>;
   postsUpdated: Post;
 };
-
 
 export type SubscriptionPostsUpdatedArgs = {
   ids: Array<Scalars['ID']>;
@@ -2330,7 +2207,7 @@ export type TaggedPostPaginatedResponse = {
 
 export enum TargetType {
   SpaceProfile = 'SPACE_PROFILE',
-  UserProfile = 'USER_PROFILE'
+  UserProfile = 'USER_PROFILE',
 }
 
 export type Ticket = {
@@ -2390,12 +2267,12 @@ export enum TransactionStatus {
   Failed = 'FAILED',
   Pending = 'PENDING',
   Processing = 'PROCESSING',
-  Successful = 'SUCCESSFUL'
+  Successful = 'SUCCESSFUL',
 }
 
 export enum TransactionType {
   Payment = 'PAYMENT',
-  Refund = 'REFUND'
+  Refund = 'REFUND',
 }
 
 export type UpdatePaidRoomNotification = {
@@ -2581,7 +2458,7 @@ export enum Interset {
   Room = 'ROOM',
   Spaces = 'SPACES',
   Top = 'TOP',
-  User = 'USER'
+  User = 'USER',
 }
 
 export type LivePodcastRoom = {
@@ -2621,7 +2498,7 @@ export enum SearchType {
   Post = 'POST',
   Room = 'ROOM',
   Spaces = 'SPACES',
-  User = 'USER'
+  User = 'USER',
 }
 
 export type SearchedResult = {
@@ -2639,13 +2516,13 @@ export type SigninResponse = {
   user: User;
 };
 
-export type SpaceSearchResponse = {
-  __typename?: 'spaceSearchResponse';
-  data: Array<Maybe<Space>>;
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-  total?: Maybe<Scalars['Int']>;
-};
+// export type SpaceSearchResponse = {
+//   __typename?: 'spaceSearchResponse';
+//   data: Array<Maybe<Space>>;
+//   limit: Scalars['Int'];
+//   offset: Scalars['Int'];
+//   total?: Maybe<Scalars['Int']>;
+// };
 
 export type TagNameSearchResponse = {
   __typename?: 'tagNameSearchResponse';
@@ -2672,15 +2549,27 @@ export type SignInMutationVariables = Exact<{
   password: Scalars['String'];
 }>;
 
-
-export type SignInMutation = { __typename?: 'Mutation', signin: { __typename?: 'signinResponse', accessToken?: { __typename?: 'TokenSchema', token: string, expiresAt: string } | null, user: { __typename?: 'User', id: string, isOnboarded: boolean } } };
+export type SignInMutation = {
+  __typename?: 'Mutation';
+  signin: {
+    __typename?: 'signinResponse';
+    accessToken?: {
+      __typename?: 'TokenSchema';
+      token: string;
+      expiresAt: string;
+    } | null;
+    user: {__typename?: 'User'; id: string; isOnboarded: boolean};
+  };
+};
 
 export type ResendOtpMutationVariables = Exact<{
   phoneNumber: Scalars['String'];
 }>;
 
-
-export type ResendOtpMutation = { __typename?: 'Mutation', resendOTPSignin: { __typename?: 'SignInWithOTPResponse', message: string } };
+export type ResendOtpMutation = {
+  __typename?: 'Mutation';
+  resendOTPSignin: {__typename?: 'SignInWithOTPResponse'; message: string};
+};
 
 export type SignupMutationVariables = Exact<{
   phoneNumber: Scalars['String'];
@@ -2690,38 +2579,57 @@ export type SignupMutationVariables = Exact<{
   token: Scalars['String'];
 }>;
 
-
-export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'SignUpResponse', message: string } };
+export type SignupMutation = {
+  __typename?: 'Mutation';
+  signup: {__typename?: 'SignUpResponse'; message: string};
+};
 
 export type ResendCodeSignupMutationVariables = Exact<{
   phoneNumber: Scalars['String'];
 }>;
 
-
-export type ResendCodeSignupMutation = { __typename?: 'Mutation', resendCodeSignup: { __typename?: 'SignUpResponse', message: string } };
+export type ResendCodeSignupMutation = {
+  __typename?: 'Mutation';
+  resendCodeSignup: {__typename?: 'SignUpResponse'; message: string};
+};
 
 export type VerifyPhoneNumberMutationVariables = Exact<{
   phoneNumber: Scalars['String'];
   code: Scalars['String'];
 }>;
 
-
-export type VerifyPhoneNumberMutation = { __typename?: 'Mutation', verifyPhoneNumber: { __typename?: 'signinResponse', accessToken?: { __typename?: 'TokenSchema', token: string, expiresAt: string } | null } };
+export type VerifyPhoneNumberMutation = {
+  __typename?: 'Mutation';
+  verifyPhoneNumber: {
+    __typename?: 'signinResponse';
+    accessToken?: {
+      __typename?: 'TokenSchema';
+      token: string;
+      expiresAt: string;
+    } | null;
+  };
+};
 
 export type OnboardUserMutationVariables = Exact<{
   onboardUser: OnboardUserInput;
 }>;
 
-
-export type OnboardUserMutation = { __typename?: 'Mutation', onboardUser: { __typename?: 'UserUpdateResponse', user: { __typename?: 'User', id: string } } };
+export type OnboardUserMutation = {
+  __typename?: 'Mutation';
+  onboardUser: {
+    __typename?: 'UserUpdateResponse';
+    user: {__typename?: 'User'; id: string};
+  };
+};
 
 export type SendVerificationCodePhoneMutationVariables = Exact<{
   phoneNumber: Scalars['String'];
 }>;
 
-
-export type SendVerificationCodePhoneMutation = { __typename?: 'Mutation', sendVerificationCodePhone: { __typename?: 'Message', message: string } };
-
+export type SendVerificationCodePhoneMutation = {
+  __typename?: 'Mutation';
+  sendVerificationCodePhone: {__typename?: 'Message'; message: string};
+};
 
 export const SignInDocument = `
     mutation SignIn($phoneNumber: String!, $password: String!) {
@@ -2737,20 +2645,38 @@ export const SignInDocument = `
   }
 }
     `;
-export const useSignInMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<SignInMutation, TError, SignInMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
-    useMutation<SignInMutation, TError, SignInMutationVariables, TContext>(
-      ['SignIn'],
-      (variables?: SignInMutationVariables) => fetcher<SignInMutation, SignInMutationVariables>(client, SignInDocument, variables, headers)(),
-      options
-    );
-useSignInMutation.fetcher = (client: GraphQLClient, variables: SignInMutationVariables, headers?: RequestInit['headers']) => fetcher<SignInMutation, SignInMutationVariables>(client, SignInDocument, variables, headers);
+export const useSignInMutation = <TError = unknown, TContext = unknown>(
+  client: GraphQLClient,
+  options?: UseMutationOptions<
+    SignInMutation,
+    TError,
+    SignInMutationVariables,
+    TContext
+  >,
+  headers?: RequestInit['headers'],
+) =>
+  useMutation<SignInMutation, TError, SignInMutationVariables, TContext>(
+    ['SignIn'],
+    (variables?: SignInMutationVariables) =>
+      fetcher<SignInMutation, SignInMutationVariables>(
+        client,
+        SignInDocument,
+        variables,
+        headers,
+      )(),
+    options,
+  );
+useSignInMutation.fetcher = (
+  client: GraphQLClient,
+  variables: SignInMutationVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<SignInMutation, SignInMutationVariables>(
+    client,
+    SignInDocument,
+    variables,
+    headers,
+  );
 export const ResendOtpDocument = `
     mutation ResendOTP($phoneNumber: String!) {
   resendOTPSignin(phoneNumber: $phoneNumber) {
@@ -2758,20 +2684,38 @@ export const ResendOtpDocument = `
   }
 }
     `;
-export const useResendOtpMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<ResendOtpMutation, TError, ResendOtpMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
-    useMutation<ResendOtpMutation, TError, ResendOtpMutationVariables, TContext>(
-      ['ResendOTP'],
-      (variables?: ResendOtpMutationVariables) => fetcher<ResendOtpMutation, ResendOtpMutationVariables>(client, ResendOtpDocument, variables, headers)(),
-      options
-    );
-useResendOtpMutation.fetcher = (client: GraphQLClient, variables: ResendOtpMutationVariables, headers?: RequestInit['headers']) => fetcher<ResendOtpMutation, ResendOtpMutationVariables>(client, ResendOtpDocument, variables, headers);
+export const useResendOtpMutation = <TError = unknown, TContext = unknown>(
+  client: GraphQLClient,
+  options?: UseMutationOptions<
+    ResendOtpMutation,
+    TError,
+    ResendOtpMutationVariables,
+    TContext
+  >,
+  headers?: RequestInit['headers'],
+) =>
+  useMutation<ResendOtpMutation, TError, ResendOtpMutationVariables, TContext>(
+    ['ResendOTP'],
+    (variables?: ResendOtpMutationVariables) =>
+      fetcher<ResendOtpMutation, ResendOtpMutationVariables>(
+        client,
+        ResendOtpDocument,
+        variables,
+        headers,
+      )(),
+    options,
+  );
+useResendOtpMutation.fetcher = (
+  client: GraphQLClient,
+  variables: ResendOtpMutationVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<ResendOtpMutation, ResendOtpMutationVariables>(
+    client,
+    ResendOtpDocument,
+    variables,
+    headers,
+  );
 export const SignupDocument = `
     mutation Signup($phoneNumber: String!, $name: String!, $password: String!, $userTimeZone: String!, $token: String!) {
   signup(
@@ -2785,20 +2729,38 @@ export const SignupDocument = `
   }
 }
     `;
-export const useSignupMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<SignupMutation, TError, SignupMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
-    useMutation<SignupMutation, TError, SignupMutationVariables, TContext>(
-      ['Signup'],
-      (variables?: SignupMutationVariables) => fetcher<SignupMutation, SignupMutationVariables>(client, SignupDocument, variables, headers)(),
-      options
-    );
-useSignupMutation.fetcher = (client: GraphQLClient, variables: SignupMutationVariables, headers?: RequestInit['headers']) => fetcher<SignupMutation, SignupMutationVariables>(client, SignupDocument, variables, headers);
+export const useSignupMutation = <TError = unknown, TContext = unknown>(
+  client: GraphQLClient,
+  options?: UseMutationOptions<
+    SignupMutation,
+    TError,
+    SignupMutationVariables,
+    TContext
+  >,
+  headers?: RequestInit['headers'],
+) =>
+  useMutation<SignupMutation, TError, SignupMutationVariables, TContext>(
+    ['Signup'],
+    (variables?: SignupMutationVariables) =>
+      fetcher<SignupMutation, SignupMutationVariables>(
+        client,
+        SignupDocument,
+        variables,
+        headers,
+      )(),
+    options,
+  );
+useSignupMutation.fetcher = (
+  client: GraphQLClient,
+  variables: SignupMutationVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<SignupMutation, SignupMutationVariables>(
+    client,
+    SignupDocument,
+    variables,
+    headers,
+  );
 export const ResendCodeSignupDocument = `
     mutation ResendCodeSignup($phoneNumber: String!) {
   resendCodeSignup(phoneNumber: $phoneNumber) {
@@ -2807,19 +2769,45 @@ export const ResendCodeSignupDocument = `
 }
     `;
 export const useResendCodeSignupMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<ResendCodeSignupMutation, TError, ResendCodeSignupMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
-    useMutation<ResendCodeSignupMutation, TError, ResendCodeSignupMutationVariables, TContext>(
-      ['ResendCodeSignup'],
-      (variables?: ResendCodeSignupMutationVariables) => fetcher<ResendCodeSignupMutation, ResendCodeSignupMutationVariables>(client, ResendCodeSignupDocument, variables, headers)(),
-      options
-    );
-useResendCodeSignupMutation.fetcher = (client: GraphQLClient, variables: ResendCodeSignupMutationVariables, headers?: RequestInit['headers']) => fetcher<ResendCodeSignupMutation, ResendCodeSignupMutationVariables>(client, ResendCodeSignupDocument, variables, headers);
+  TError = unknown,
+  TContext = unknown,
+>(
+  client: GraphQLClient,
+  options?: UseMutationOptions<
+    ResendCodeSignupMutation,
+    TError,
+    ResendCodeSignupMutationVariables,
+    TContext
+  >,
+  headers?: RequestInit['headers'],
+) =>
+  useMutation<
+    ResendCodeSignupMutation,
+    TError,
+    ResendCodeSignupMutationVariables,
+    TContext
+  >(
+    ['ResendCodeSignup'],
+    (variables?: ResendCodeSignupMutationVariables) =>
+      fetcher<ResendCodeSignupMutation, ResendCodeSignupMutationVariables>(
+        client,
+        ResendCodeSignupDocument,
+        variables,
+        headers,
+      )(),
+    options,
+  );
+useResendCodeSignupMutation.fetcher = (
+  client: GraphQLClient,
+  variables: ResendCodeSignupMutationVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<ResendCodeSignupMutation, ResendCodeSignupMutationVariables>(
+    client,
+    ResendCodeSignupDocument,
+    variables,
+    headers,
+  );
 export const VerifyPhoneNumberDocument = `
     mutation VerifyPhoneNumber($phoneNumber: String!, $code: String!) {
   verifyPhoneNumber(phoneNumber: $phoneNumber, code: $code) {
@@ -2831,19 +2819,45 @@ export const VerifyPhoneNumberDocument = `
 }
     `;
 export const useVerifyPhoneNumberMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<VerifyPhoneNumberMutation, TError, VerifyPhoneNumberMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
-    useMutation<VerifyPhoneNumberMutation, TError, VerifyPhoneNumberMutationVariables, TContext>(
-      ['VerifyPhoneNumber'],
-      (variables?: VerifyPhoneNumberMutationVariables) => fetcher<VerifyPhoneNumberMutation, VerifyPhoneNumberMutationVariables>(client, VerifyPhoneNumberDocument, variables, headers)(),
-      options
-    );
-useVerifyPhoneNumberMutation.fetcher = (client: GraphQLClient, variables: VerifyPhoneNumberMutationVariables, headers?: RequestInit['headers']) => fetcher<VerifyPhoneNumberMutation, VerifyPhoneNumberMutationVariables>(client, VerifyPhoneNumberDocument, variables, headers);
+  TError = unknown,
+  TContext = unknown,
+>(
+  client: GraphQLClient,
+  options?: UseMutationOptions<
+    VerifyPhoneNumberMutation,
+    TError,
+    VerifyPhoneNumberMutationVariables,
+    TContext
+  >,
+  headers?: RequestInit['headers'],
+) =>
+  useMutation<
+    VerifyPhoneNumberMutation,
+    TError,
+    VerifyPhoneNumberMutationVariables,
+    TContext
+  >(
+    ['VerifyPhoneNumber'],
+    (variables?: VerifyPhoneNumberMutationVariables) =>
+      fetcher<VerifyPhoneNumberMutation, VerifyPhoneNumberMutationVariables>(
+        client,
+        VerifyPhoneNumberDocument,
+        variables,
+        headers,
+      )(),
+    options,
+  );
+useVerifyPhoneNumberMutation.fetcher = (
+  client: GraphQLClient,
+  variables: VerifyPhoneNumberMutationVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<VerifyPhoneNumberMutation, VerifyPhoneNumberMutationVariables>(
+    client,
+    VerifyPhoneNumberDocument,
+    variables,
+    headers,
+  );
 export const OnboardUserDocument = `
     mutation OnboardUser($onboardUser: onboardUserInput!) {
   onboardUser(onboardUser: $onboardUser) {
@@ -2853,20 +2867,43 @@ export const OnboardUserDocument = `
   }
 }
     `;
-export const useOnboardUserMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<OnboardUserMutation, TError, OnboardUserMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
-    useMutation<OnboardUserMutation, TError, OnboardUserMutationVariables, TContext>(
-      ['OnboardUser'],
-      (variables?: OnboardUserMutationVariables) => fetcher<OnboardUserMutation, OnboardUserMutationVariables>(client, OnboardUserDocument, variables, headers)(),
-      options
-    );
-useOnboardUserMutation.fetcher = (client: GraphQLClient, variables: OnboardUserMutationVariables, headers?: RequestInit['headers']) => fetcher<OnboardUserMutation, OnboardUserMutationVariables>(client, OnboardUserDocument, variables, headers);
+export const useOnboardUserMutation = <TError = unknown, TContext = unknown>(
+  client: GraphQLClient,
+  options?: UseMutationOptions<
+    OnboardUserMutation,
+    TError,
+    OnboardUserMutationVariables,
+    TContext
+  >,
+  headers?: RequestInit['headers'],
+) =>
+  useMutation<
+    OnboardUserMutation,
+    TError,
+    OnboardUserMutationVariables,
+    TContext
+  >(
+    ['OnboardUser'],
+    (variables?: OnboardUserMutationVariables) =>
+      fetcher<OnboardUserMutation, OnboardUserMutationVariables>(
+        client,
+        OnboardUserDocument,
+        variables,
+        headers,
+      )(),
+    options,
+  );
+useOnboardUserMutation.fetcher = (
+  client: GraphQLClient,
+  variables: OnboardUserMutationVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<OnboardUserMutation, OnboardUserMutationVariables>(
+    client,
+    OnboardUserDocument,
+    variables,
+    headers,
+  );
 export const SendVerificationCodePhoneDocument = `
     mutation SendVerificationCodePhone($phoneNumber: String!) {
   sendVerificationCodePhone(phoneNumber: $phoneNumber) {
@@ -2875,16 +2912,38 @@ export const SendVerificationCodePhoneDocument = `
 }
     `;
 export const useSendVerificationCodePhoneMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<SendVerificationCodePhoneMutation, TError, SendVerificationCodePhoneMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
-    useMutation<SendVerificationCodePhoneMutation, TError, SendVerificationCodePhoneMutationVariables, TContext>(
-      ['SendVerificationCodePhone'],
-      (variables?: SendVerificationCodePhoneMutationVariables) => fetcher<SendVerificationCodePhoneMutation, SendVerificationCodePhoneMutationVariables>(client, SendVerificationCodePhoneDocument, variables, headers)(),
-      options
-    );
-useSendVerificationCodePhoneMutation.fetcher = (client: GraphQLClient, variables: SendVerificationCodePhoneMutationVariables, headers?: RequestInit['headers']) => fetcher<SendVerificationCodePhoneMutation, SendVerificationCodePhoneMutationVariables>(client, SendVerificationCodePhoneDocument, variables, headers);
+  TError = unknown,
+  TContext = unknown,
+>(
+  client: GraphQLClient,
+  options?: UseMutationOptions<
+    SendVerificationCodePhoneMutation,
+    TError,
+    SendVerificationCodePhoneMutationVariables,
+    TContext
+  >,
+  headers?: RequestInit['headers'],
+) =>
+  useMutation<
+    SendVerificationCodePhoneMutation,
+    TError,
+    SendVerificationCodePhoneMutationVariables,
+    TContext
+  >(
+    ['SendVerificationCodePhone'],
+    (variables?: SendVerificationCodePhoneMutationVariables) =>
+      fetcher<
+        SendVerificationCodePhoneMutation,
+        SendVerificationCodePhoneMutationVariables
+      >(client, SendVerificationCodePhoneDocument, variables, headers)(),
+    options,
+  );
+useSendVerificationCodePhoneMutation.fetcher = (
+  client: GraphQLClient,
+  variables: SendVerificationCodePhoneMutationVariables,
+  headers?: RequestInit['headers'],
+) =>
+  fetcher<
+    SendVerificationCodePhoneMutation,
+    SendVerificationCodePhoneMutationVariables
+  >(client, SendVerificationCodePhoneDocument, variables, headers);

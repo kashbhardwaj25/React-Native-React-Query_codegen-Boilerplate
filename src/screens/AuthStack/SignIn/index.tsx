@@ -17,6 +17,9 @@ import {
   WHITE_COLOR,
   YELLOW_COLOR_300,
 } from '../../../styles/colorConstants';
+import {useSignInMutation} from '../../../services/api/fifoServer';
+import graphqlRequestClient from '../../../services/api';
+import {setTokens} from '../../../utils/tokenHelper';
 
 type SignInProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
@@ -24,12 +27,14 @@ const SignIn = ({navigation}: SignInProps) => {
   const [phone, setPhone] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
-  // const {mutate, isLoading} = useSignInMutation(graphqlRequestClient(), {
-  //   onSuccess: data => {
-  //     console.log(data);
-  //   },
-  //   onError: error => console.log(error),
-  // });
+  const {mutate, isLoading} = useSignInMutation(graphqlRequestClient(), {
+    onSuccess: async data => {
+      if (data.signin.accessToken) {
+        await setTokens({token: data.signin.accessToken.token});
+      }
+    },
+    onError: error => console.log(error),
+  });
 
   return (
     <View style={styles.container}>
@@ -50,16 +55,16 @@ const SignIn = ({navigation}: SignInProps) => {
       />
       <TouchableOpacity
         style={styles.btnStyles}
-        // disabled={isLoading}
+        disabled={isLoading}
         onPress={() => {
-          // mutate({
-          //   email: emailInput,
-          //   password: passwordInput,
-          // });
+          mutate({
+            phoneNumber: phone,
+            password: passwordInput,
+          });
         }}>
-        {/* <Text style={{textAlign: 'center'}}>
+        <Text style={{textAlign: 'center'}}>
           {isLoading ? 'Loading ...' : 'Sign In'}
-        </Text> */}
+        </Text>
       </TouchableOpacity>
       <Pressable onPress={() => navigation.navigate('SignUp')}>
         <Text style={{color: WHITE_COLOR, marginTop: 16}}>

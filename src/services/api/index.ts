@@ -22,6 +22,8 @@ const graphqlRequestClient = (
     }
   });
 
+  console.log(gqlClient);
+
   return gqlClient;
 };
 
