@@ -17,30 +17,28 @@ import {
   WHITE_COLOR,
   YELLOW_COLOR_300,
 } from '../../../styles/colorConstants';
-import graphqlRequestClient from '../../../services/api';
-import {useSignInMutation} from '../../../services/api/companyPortalServer';
 
 type SignInProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
 const SignIn = ({navigation}: SignInProps) => {
-  const [emailInput, setEmailInput] = useState('');
+  const [phone, setPhone] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
-  const {mutate, isLoading} = useSignInMutation(graphqlRequestClient(), {
-    onSuccess: data => {
-      console.log(data);
-    },
-    onError: error => console.log(error),
-  });
+  // const {mutate, isLoading} = useSignInMutation(graphqlRequestClient(), {
+  //   onSuccess: data => {
+  //     console.log(data);
+  //   },
+  //   onError: error => console.log(error),
+  // });
 
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.inputStyles}
-        placeholder="Enter your email"
+        placeholder="Enter your phone number"
         placeholderTextColor={WHITE_COLOR}
-        defaultValue={emailInput}
-        onChangeText={newText => setEmailInput(newText)}
+        defaultValue={phone}
+        onChangeText={newText => setPhone(newText)}
       />
       <TextInput
         style={styles.inputStyles}
@@ -52,16 +50,16 @@ const SignIn = ({navigation}: SignInProps) => {
       />
       <TouchableOpacity
         style={styles.btnStyles}
-        disabled={isLoading}
+        // disabled={isLoading}
         onPress={() => {
-          mutate({
-            email: emailInput,
-            password: passwordInput,
-          });
+          // mutate({
+          //   email: emailInput,
+          //   password: passwordInput,
+          // });
         }}>
-        <Text style={{textAlign: 'center'}}>
+        {/* <Text style={{textAlign: 'center'}}>
           {isLoading ? 'Loading ...' : 'Sign In'}
-        </Text>
+        </Text> */}
       </TouchableOpacity>
       <Pressable onPress={() => navigation.navigate('SignUp')}>
         <Text style={{color: WHITE_COLOR, marginTop: 16}}>

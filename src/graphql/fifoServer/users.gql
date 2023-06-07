@@ -1,0 +1,65 @@
+mutation SignIn($phoneNumber: String!, $password: String!) {
+  signin(phoneNumber: $phoneNumber, password: $password) {
+    accessToken {
+      token
+      expiresAt
+    }
+    user {
+      id
+      isOnboarded
+    }
+  }
+}
+
+mutation ResendOTP($phoneNumber: String!) {
+  resendOTPSignin(phoneNumber: $phoneNumber) {
+    message
+  }
+}
+
+mutation Signup(
+  $phoneNumber: String!
+  $name: String!
+  $password: String!
+  $userTimeZone: String!
+  $token: String!
+) {
+  signup(
+    phoneNumber: $phoneNumber
+    name: $name
+    password: $password
+    userTimeZone: $userTimeZone
+    token: $token
+  ) {
+    message
+  }
+}
+
+mutation ResendCodeSignup($phoneNumber: String!) {
+  resendCodeSignup(phoneNumber: $phoneNumber) {
+    message
+  }
+}
+
+mutation VerifyPhoneNumber($phoneNumber: String!, $code: String!) {
+  verifyPhoneNumber(phoneNumber: $phoneNumber, code: $code) {
+    accessToken {
+      token
+      expiresAt
+    }
+  }
+}
+
+mutation OnboardUser($onboardUser: onboardUserInput!) {
+  onboardUser(onboardUser: $onboardUser) {
+    user {
+      id
+    }
+  }
+}
+
+mutation SendVerificationCodePhone($phoneNumber: String!) {
+  sendVerificationCodePhone(phoneNumber: $phoneNumber) {
+    message
+  }
+}

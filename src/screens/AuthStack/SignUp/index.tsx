@@ -21,10 +21,8 @@ type SignUpProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 
 const SignUp = ({navigation}: SignUpProps) => {
   const [name, setName] = useState('');
-  const [emailInput, setEmailInput] = useState('');
+  const [phone, setPhone] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
-  const [workspaceName, setWorkspaceName] = useState('');
-  const [uniqueName, setUniqueName] = useState('');
 
   return (
     <View style={styles.container}>
@@ -37,10 +35,10 @@ const SignUp = ({navigation}: SignUpProps) => {
       />
       <TextInput
         style={styles.inputStyles}
-        placeholder="Enter your email"
+        placeholder="Enter your phone number"
         placeholderTextColor={WHITE_COLOR}
-        defaultValue={emailInput}
-        onChangeText={newText => setEmailInput(newText)}
+        defaultValue={phone}
+        onChangeText={newText => setPhone(newText)}
       />
       <TextInput
         style={styles.inputStyles}
@@ -49,20 +47,6 @@ const SignUp = ({navigation}: SignUpProps) => {
         defaultValue={passwordInput}
         onChangeText={newText => setPasswordInput(newText)}
         secureTextEntry
-      />
-      <TextInput
-        style={styles.inputStyles}
-        placeholder="Enter your workspace name"
-        placeholderTextColor={WHITE_COLOR}
-        defaultValue={workspaceName}
-        onChangeText={newText => setWorkspaceName(newText)}
-      />
-      <TextInput
-        style={styles.inputStyles}
-        placeholder="Enter your Unique Name"
-        placeholderTextColor={WHITE_COLOR}
-        defaultValue={uniqueName}
-        onChangeText={newText => setUniqueName(newText)}
       />
       <Pressable
         style={styles.btnStyles}

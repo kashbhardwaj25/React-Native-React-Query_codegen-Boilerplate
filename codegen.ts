@@ -3,9 +3,9 @@ import envConfig from './src/utils/envConfig';
 
 const config: CodegenConfig = {
   generates: {
-    './src/services/api/companyPortalServer.ts': {
+    './src/services/api/fifoServer.ts': {
       schema: envConfig.SERVER_URL + '/graphql',
-      documents: './src/graphql/companyPortalServer/*.gql',
+      documents: './src/graphql/fifoServer/*.gql',
       plugins: [
         {
           add: {
