@@ -1,10 +1,10 @@
 if (!process.env.NODE_ENV) {
-  require('dotenv').config();
+  require('react-native-dotenv').config();
 }
 
 let serverUrl = 'http://localhost:4000';
 
-switch (process.env.REACT_NATIVE_APP_PUBLIC_ENV) {
+switch (process.env.APP_ENV) {
   case 'base':
     serverUrl = 'https://api.fifo.im';
     break;
@@ -19,7 +19,7 @@ switch (process.env.REACT_NATIVE_APP_PUBLIC_ENV) {
 
 const envConfig = {
   SERVER_URL: serverUrl,
-  ENV: process.env.REACT_NATIVE_APP_PUBLIC_ENV,
+  ENV: process.env.APP_ENV,
 };
 
 export default envConfig;

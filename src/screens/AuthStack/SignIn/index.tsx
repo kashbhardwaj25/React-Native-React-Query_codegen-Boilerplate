@@ -32,6 +32,7 @@ const SignIn = ({navigation}: SignInProps) => {
       if (data.signin.accessToken) {
         await setTokens({token: data.signin.accessToken.token});
       }
+      navigation.navigate('VerifyOtp');
     },
     onError: error => console.log(error),
   });
