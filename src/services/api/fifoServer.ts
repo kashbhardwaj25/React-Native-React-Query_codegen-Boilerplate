@@ -1,7 +1,12 @@
 //@ts-nocheck
 import {GraphQLClient} from 'graphql-request';
 import {RequestInit} from 'graphql-request/dist/types.dom';
-import {useMutation, UseMutationOptions} from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends {[key: string]: unknown}> = {[K in keyof T]: T[K]};
@@ -159,6 +164,7 @@ export type DeleteResponse = {
 export type Domain = {
   __typename?: 'Domain';
   domain: Scalars['String'];
+  failedReason?: Maybe<FailedReason>;
   id: Scalars['ID'];
   profileDomainMetaData?: Maybe<User>;
   retryCount: Scalars['Int'];
@@ -196,6 +202,13 @@ export type DraftMedia = {
 
 export enum DraftType {
   Post = 'POST',
+}
+
+export enum FailedReason {
+  AddressCheckFailed = 'ADDRESS_CHECK_FAILED',
+  AlreadySuccessfulDomainPresent = 'ALREADY_SUCCESSFUL_DOMAIN_PRESENT',
+  NsLookupError = 'NS_LOOKUP_ERROR',
+  OwnershipCheckFailed = 'OWNERSHIP_CHECK_FAILED',
 }
 
 export type FetchFollowerResponse = {
@@ -2544,6 +2557,33 @@ export type VerifyUserEmailResponse = {
   message: Scalars['String'];
 };
 
+export type MeQueryVariables = Exact<{[key: string]: never}>;
+
+export type MeQuery = {
+  __typename?: 'Query';
+  me: {
+    __typename?: 'User';
+    id: string;
+    name?: string | null;
+    username?: string | null;
+    description?: string | null;
+    email?: string | null;
+    isEmailVerified: boolean;
+    isOnboarded: boolean;
+    phoneNumber?: string | null;
+    tempEmail?: string | null;
+    userTimeZone: string;
+    usernameAttemptLefts?: number | null;
+    profileImage?: {
+      __typename?: 'VariableQualityImage';
+      small?: string | null;
+      medium?: string | null;
+      large?: string | null;
+      original?: string | null;
+    } | null;
+  };
+};
+
 export type SignInMutationVariables = Exact<{
   phoneNumber: Scalars['String'];
   password: Scalars['String'];
@@ -2631,6 +2671,48 @@ export type SendVerificationCodePhoneMutation = {
   sendVerificationCodePhone: {__typename?: 'Message'; message: string};
 };
 
+export const MeDocument = `
+    query Me {
+  me {
+    id
+    name
+    username
+    description
+    profileImage {
+      small
+      medium
+      large
+      original
+    }
+    email
+    isEmailVerified
+    isOnboarded
+    phoneNumber
+    tempEmail
+    userTimeZone
+    usernameAttemptLefts
+  }
+}
+    `;
+export const useMeQuery = <TData = MeQuery, TError = unknown>(
+  client: GraphQLClient,
+  variables?: MeQueryVariables,
+  options?: UseQueryOptions<MeQuery, TError, TData>,
+  headers?: RequestInit['headers'],
+) =>
+  useQuery<MeQuery, TError, TData>(
+    variables === undefined ? ['Me'] : ['Me', variables],
+    fetcher<MeQuery, MeQueryVariables>(client, MeDocument, variables, headers),
+    options,
+  );
+
+useMeQuery.getKey = (variables?: MeQueryVariables) =>
+  variables === undefined ? ['Me'] : ['Me', variables];
+useMeQuery.fetcher = (
+  client: GraphQLClient,
+  variables?: MeQueryVariables,
+  headers?: RequestInit['headers'],
+) => fetcher<MeQuery, MeQueryVariables>(client, MeDocument, variables, headers);
 export const SignInDocument = `
     mutation SignIn($phoneNumber: String!, $password: String!) {
   signin(phoneNumber: $phoneNumber, password: $password) {

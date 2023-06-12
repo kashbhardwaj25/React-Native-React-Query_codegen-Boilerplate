@@ -1,5 +1,5 @@
 if (!process.env.NODE_ENV) {
-  require('react-native-dotenv').config();
+  require('dotenv').config();
 }
 
 let serverUrl = 'http://localhost:4000';

@@ -20,6 +20,7 @@ import {
 import {useSignInMutation} from '../../../services/api/fifoServer';
 import graphqlRequestClient from '../../../services/api';
 import {setTokens} from '../../../utils/tokenHelper';
+import useAuthStore from '../../../store/userStore';
 
 type SignInProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
@@ -27,12 +28,15 @@ const SignIn = ({navigation}: SignInProps) => {
   const [phone, setPhone] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
+  const {setIsLoggedIn} = useAuthStore();
+
   const {mutate, isLoading} = useSignInMutation(graphqlRequestClient(), {
     onSuccess: async data => {
       if (data.signin.accessToken) {
         await setTokens({token: data.signin.accessToken.token});
+
+        setIsLoggedIn(true);
       }
-      navigation.navigate('VerifyOtp');
     },
     onError: error => console.log(error),
   });

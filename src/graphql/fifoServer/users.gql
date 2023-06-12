@@ -1,3 +1,25 @@
+query Me {
+  me {
+    id
+    name
+    username
+    description
+    profileImage {
+      small
+      medium
+      large
+      original
+    }
+    email
+    isEmailVerified
+    isOnboarded
+    phoneNumber
+    tempEmail
+    userTimeZone
+    usernameAttemptLefts
+  }
+}
+
 mutation SignIn($phoneNumber: String!, $password: String!) {
   signin(phoneNumber: $phoneNumber, password: $password) {
     accessToken {
