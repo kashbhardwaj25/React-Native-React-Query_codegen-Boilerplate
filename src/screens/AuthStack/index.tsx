@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>()
 const AuthStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
-      <Stack.Screen name="SignIn" component={SignIn} options={{ title: 'FIFO' }} />
+      <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }
