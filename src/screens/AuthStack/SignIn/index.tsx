@@ -1,61 +1,53 @@
-import {useState} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import {
-  Pressable,
-  Text,
-  View,
-  TextInput,
-  Platform,
-  Dimensions,
-} from 'react-native';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { useState } from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import type { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { Pressable, Text, View, TextInput, Platform, Dimensions, Image } from 'react-native'
 
-import {RootStackParamList} from '../../../types/navigationTypes';
-import {
-  INDIGO_COLOR_800,
-  INDIGO_COLOR_950,
-  WHITE_COLOR,
-  YELLOW_COLOR_300,
-} from '../../../styles/colorConstants';
-import {useSignInMutation} from '../../../services/api/fifoServer';
-import graphqlRequestClient from '../../../services/api';
-import {setTokens} from '../../../utils/tokenHelper';
-import useAuthStore from '../../../store/userStore';
+import useAuthStore from '../../../store/userStore'
+import { setTokens } from '../../../utils/tokenHelper'
+import graphqlRequestClient from '../../../services/api'
+import { RootStackParamList } from '../../../types/navigationTypes'
+import { useSignInMutation } from '../../../services/api/fifoServer'
+import { BLACK_COLOR, BLUE_COLOR_100, WHITE_COLOR, YELLOW_COLOR_300 } from '../../../styles/colorConstants'
 
-type SignInProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
+type SignInProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>
 
-const SignIn = ({navigation}: SignInProps) => {
-  const [phone, setPhone] = useState('');
-  const [passwordInput, setPasswordInput] = useState('');
+const SignIn = ({ navigation }: SignInProps) => {
+  const [phone, setPhone] = useState('')
+  const [passwordInput, setPasswordInput] = useState('')
 
-  const {setIsLoggedIn} = useAuthStore();
+  const { setIsLoggedIn } = useAuthStore()
 
-  const {mutate, isLoading} = useSignInMutation(graphqlRequestClient(), {
-    onSuccess: async data => {
+  const { mutate, isLoading } = useSignInMutation(graphqlRequestClient(), {
+    onSuccess: async (data) => {
       if (data.signin.accessToken) {
-        await setTokens({token: data.signin.accessToken.token});
+        await setTokens({ token: data.signin.accessToken.token })
 
-        setIsLoggedIn(true);
+        setIsLoggedIn(true)
       }
     },
-    onError: error => console.log(error),
-  });
+    onError: (error) => console.log(error),
+  })
 
   return (
     <View style={styles.container}>
+      <Image
+        style={{ width: 275, height: 275, marginBottom: 16 }}
+        source={require('../../../assets/authIllustration.webp')}
+      />
       <TextInput
         style={styles.inputStyles}
         placeholder="Enter your phone number"
-        placeholderTextColor={WHITE_COLOR}
+        placeholderTextColor={BLACK_COLOR}
         defaultValue={phone}
-        onChangeText={newText => setPhone(newText)}
+        onChangeText={(newText) => setPhone(newText)}
       />
       <TextInput
         style={styles.inputStyles}
         placeholder="Enter your password"
-        placeholderTextColor={WHITE_COLOR}
+        placeholderTextColor={BLACK_COLOR}
         defaultValue={passwordInput}
-        onChangeText={newText => setPasswordInput(newText)}
+        onChangeText={(newText) => setPasswordInput(newText)}
         secureTextEntry
       />
       <TouchableOpacity
@@ -65,24 +57,21 @@ const SignIn = ({navigation}: SignInProps) => {
           mutate({
             phoneNumber: phone,
             password: passwordInput,
-          });
-        }}>
-        <Text style={{textAlign: 'center'}}>
-          {isLoading ? 'Loading ...' : 'Sign In'}
-        </Text>
+          })
+        }}
+      >
+        <Text style={{ textAlign: 'center' }}>{isLoading ? 'Loading ...' : 'Sign In'}</Text>
       </TouchableOpacity>
       <Pressable onPress={() => navigation.navigate('SignUp')}>
-        <Text style={{color: WHITE_COLOR, marginTop: 16}}>
-          New User? Register here!
-        </Text>
+        <Text style={{ color: WHITE_COLOR, marginTop: 16 }}>New User? Register here!</Text>
       </Pressable>
     </View>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn
 
-const windowWidth = Dimensions.get('window').width;
+const windowWidth = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   container: {
@@ -90,14 +79,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: INDIGO_COLOR_950,
+    backgroundColor: WHITE_COLOR,
   },
   inputStyles: {
     width: windowWidth * 0.8,
-    backgroundColor: INDIGO_COLOR_800,
+    backgroundColor: BLUE_COLOR_100,
     marginBottom: 16,
     borderRadius: 4,
-    color: WHITE_COLOR,
+    color: BLACK_COLOR,
 
     ...Platform.select({
       ios: {
@@ -121,4 +110,4 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingRight: 8,
   },
-});
+})
