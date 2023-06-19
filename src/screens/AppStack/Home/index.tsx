@@ -1,11 +1,10 @@
-import { Text, View, SafeAreaView } from 'react-native'
+import { SafeAreaView } from 'react-native'
+import FeedCard from '../../../components/FeedCard'
 
 const Home = () => {
   return (
     <SafeAreaView>
-      <View>
-        <Text>Welcome to the app!</Text>
-      </View>
+      <FeedCard />
     </SafeAreaView>
   )
 }
