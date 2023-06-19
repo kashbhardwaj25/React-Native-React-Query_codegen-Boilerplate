@@ -12,6 +12,7 @@ import Account from './Account'
 import Notifications from './Notifications'
 import HomeIcon from '../../assets/icons/Home'
 import Settings from '../../assets/icons/Settings'
+import { resetTokens } from '../../utils/tokenHelper'
 import AccountIcon from '../../assets/icons/AccountIcon'
 import NotificationsIcon from '../../assets/icons/Notifications'
 
@@ -21,11 +22,12 @@ const AppStack = () => {
   const { setIsLoggedIn } = useUserStore()
 
   useMeQuery(graphqlRequestClient(), undefined, {
-    onError(error) {
+    onError: async (error) => {
       const { code } = getErrorMessageAndCode(error)
 
       if (code === 'UNAUTHENTICATED') {
         setIsLoggedIn(false)
+        await resetTokens()
       }
     },
   })
