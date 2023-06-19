@@ -1,0 +1,83 @@
+query GetPosts($limit: Int, $timestamp: String, $type: GetPostType!) {
+  getPosts(limit: $limit, timestamp: $timestamp, type: $type) {
+    total
+    limit
+    timestamp
+    posts {
+      ...BasicPostData
+      taggedUsers {
+        id
+      }
+      createdBy {
+        id
+        name
+        username
+        profileImage {
+          small
+          medium
+          large
+          original
+        }
+      }
+      space {
+        id
+        name
+        tagName
+        spaceType
+        profileImageUrl
+        currentUserMemberStatus
+      }
+      originalPost {
+        ...BasicPostData
+        createdBy {
+          id
+          name
+          username
+          profileImage {
+            small
+            medium
+            large
+            original
+          }
+        }
+        space {
+          id
+          name
+          tagName
+          spaceType
+          profileImageUrl
+          currentUserMemberStatus
+        }
+        childPostCount
+      }
+      childPostCount
+    }
+    recentPostCreatedAtTimestamp
+  }
+}
+fragment BasicPostData on Post {
+  id
+  content
+  postType
+  hasLiked
+  userRepostId
+  hasThreads
+  parentId
+  commentCount
+  likeCount
+  repostCount
+  media {
+    id
+    url {
+      small
+      medium
+      large
+      original
+    }
+  }
+  hasMuted
+  createdAt
+  updatedAt
+  deletedAt
+  editedAt
+}
