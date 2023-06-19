@@ -1,6 +1,8 @@
 import { View } from 'react-native'
+
 import PostHeader from '../PostHeader'
 import FeedCardMenu from '../FeedCardMenu'
+import FeedCardContent from '../FeedCardContent'
 import PostActionButtons from '../PostActionButtons'
 
 const FeedCard = () => {
@@ -10,7 +12,9 @@ const FeedCard = () => {
         <PostHeader />
         <FeedCardMenu />
       </View>
-      <View>{/* Content */}</View>
+      <View>
+        <FeedCardContent />
+      </View>
       <View>
         <PostActionButtons />
       </View>

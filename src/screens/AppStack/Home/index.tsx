@@ -1,4 +1,5 @@
 import { SafeAreaView } from 'react-native'
+
 import FeedCard from '../../../components/FeedCard'
 
 const Home = () => {
