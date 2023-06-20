@@ -1,4 +1,5 @@
 import { View, Text, Image } from 'react-native'
+import AvatarIcon from '../../assets/icons/AvatarIcon'
 
 interface PostHeaderProps {
   name: string
@@ -10,8 +11,10 @@ const PostHeader = ({ name, username, profileImageUrl }: PostHeaderProps) => {
   return (
     <View>
       {profileImageUrl !== '' ? (
-        <Image style={{ width: 40, height: 40, borderRadius: 9999 }} source={{ uri: profileImageUrl }} />
-      ) : null}
+        <Image style={{ width: 50, height: 50, borderRadius: 9999 }} source={{ uri: profileImageUrl }} />
+      ) : (
+        <AvatarIcon />
+      )}
 
       <View>
         <Text>{name}</Text>
