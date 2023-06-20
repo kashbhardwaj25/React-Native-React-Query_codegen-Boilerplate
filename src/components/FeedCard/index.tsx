@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { GetPostsQuery } from '../../services/api/fifoServer'
 
 import PostHeader from '../PostHeader'
@@ -12,7 +12,7 @@ interface PostTypes {
 
 const FeedCard = ({ post }: PostTypes) => {
   return (
-    <View style={{ paddingTop: 6, paddingBottom: 6, paddingLeft: 12, paddingRight: 12 }}>
+    <View style={styles.container}>
       <View>
         <PostHeader
           name={post.createdBy.name || ''}
@@ -33,3 +33,12 @@ const FeedCard = ({ post }: PostTypes) => {
 }
 
 export default FeedCard
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingLeft: 12,
+    paddingRight: 12,
+  },
+})

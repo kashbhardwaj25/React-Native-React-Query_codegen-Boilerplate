@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, StyleSheet } from 'react-native'
 import AvatarIcon from '../../assets/icons/AvatarIcon'
 
 interface PostHeaderProps {
@@ -9,9 +9,9 @@ interface PostHeaderProps {
 
 const PostHeader = ({ name, username, profileImageUrl }: PostHeaderProps) => {
   return (
-    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+    <View style={styles.container}>
       {profileImageUrl !== '' ? (
-        <Image style={{ width: 50, height: 50, borderRadius: 9999 }} source={{ uri: profileImageUrl }} />
+        <Image style={styles.avatarStyles} source={{ uri: profileImageUrl }} />
       ) : (
         <AvatarIcon />
       )}
@@ -25,3 +25,17 @@ const PostHeader = ({ name, username, profileImageUrl }: PostHeaderProps) => {
 }
 
 export default PostHeader
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  avatarStyles: {
+    width: 50,
+    height: 50,
+    borderRadius: 9999,
+  },
+})
