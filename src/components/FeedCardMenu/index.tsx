@@ -1,9 +1,10 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import HorizontalMenu from '../../assets/icons/HorizontalMenu'
 
 const FeedCardMenu = () => {
   return (
     <View>
-      <Text>Feed Card Menu!</Text>
+      <HorizontalMenu />
     </View>
   )
 }

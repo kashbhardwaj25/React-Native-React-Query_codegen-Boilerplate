@@ -13,7 +13,7 @@ interface PostTypes {
 const FeedCard = ({ post }: PostTypes) => {
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.postHeaderAndMenu}>
         <PostHeader
           name={post.createdBy.name || ''}
           username={post.createdBy.username || ''}
@@ -40,5 +40,10 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
     paddingLeft: 12,
     paddingRight: 12,
+  },
+  postHeaderAndMenu: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 })
