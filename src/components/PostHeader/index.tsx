@@ -1,6 +1,12 @@
 import { View, Text } from 'react-native'
 
-const PostHeader = () => {
+interface PostHeaderProps {
+  name: string
+  username: string
+  profileImageUrl: string
+}
+
+const PostHeader = ({ name, username, profileImageUrl }: PostHeaderProps) => {
   return (
     <View>
       <Text>Post Header Component!</Text>

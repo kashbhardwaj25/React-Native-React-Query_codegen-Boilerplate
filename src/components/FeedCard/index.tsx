@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import { GetPostsQuery } from '../../services/api/fifoServer'
 
-// import PostHeader from '../PostHeader'
-// import FeedCardMenu from '../FeedCardMenu'
-// import FeedCardContent from '../FeedCardContent'
-// import PostActionButtons from '../PostActionButtons'
+import PostHeader from '../PostHeader'
+import FeedCardMenu from '../FeedCardMenu'
+import FeedCardContent from '../FeedCardContent'
+import PostActionButtons from '../PostActionButtons'
 
 interface PostTypes {
   post: GetPostsQuery['getPosts']['posts'][0]
@@ -13,8 +13,12 @@ interface PostTypes {
 const FeedCard = ({ post }: PostTypes) => {
   return (
     <View>
-      {/* <View>
-        <PostHeader />
+      <View>
+        <PostHeader
+          name={post.createdBy.name || ''}
+          username={post.createdBy.username || ''}
+          profileImageUrl={post.createdBy.profileImage?.medium || ''}
+        />
         <FeedCardMenu />
       </View>
       <View>
@@ -22,7 +26,7 @@ const FeedCard = ({ post }: PostTypes) => {
       </View>
       <View>
         <PostActionButtons />
-      </View> */}
+      </View>
       <Text>{post.content}</Text>
     </View>
   )
