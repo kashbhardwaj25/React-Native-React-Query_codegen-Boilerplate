@@ -12,7 +12,7 @@ interface PostTypes {
 
 const FeedCard = ({ post }: PostTypes) => {
   return (
-    <View>
+    <View style={{ paddingTop: 6, paddingBottom: 6, paddingLeft: 12, paddingRight: 12 }}>
       <View>
         <PostHeader
           name={post.createdBy.name || ''}

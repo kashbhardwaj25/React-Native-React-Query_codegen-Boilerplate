@@ -9,7 +9,7 @@ interface PostHeaderProps {
 
 const PostHeader = ({ name, username, profileImageUrl }: PostHeaderProps) => {
   return (
-    <View>
+    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8 }}>
       {profileImageUrl !== '' ? (
         <Image style={{ width: 50, height: 50, borderRadius: 9999 }} source={{ uri: profileImageUrl }} />
       ) : (
