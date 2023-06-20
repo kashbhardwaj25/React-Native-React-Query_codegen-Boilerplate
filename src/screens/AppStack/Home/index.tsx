@@ -49,6 +49,12 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
     )
   }
 
+  const loadNextPageData = () => {
+    if (hasNextPage) {
+      fetchNextPage()
+    }
+  }
+
   return (
     <SafeAreaView style={styles.feedContainer}>
       {postsData ? (
@@ -56,6 +62,7 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
           data={postsData.pages.map((page) => page.getPosts.posts).flat()}
           keyExtractor={feedItemKeyExtractor}
           renderItem={({ item }) => <Text>{item.content}</Text>}
+          onEndReached={loadNextPageData}
         />
       ) : null}
 
