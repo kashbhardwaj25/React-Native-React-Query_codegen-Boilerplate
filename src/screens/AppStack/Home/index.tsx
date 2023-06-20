@@ -1,9 +1,9 @@
-import { SafeAreaView, ActivityIndicator, StyleSheet, FlatList, Text, View } from 'react-native'
+import { SafeAreaView, ActivityIndicator, StyleSheet, FlatList, View } from 'react-native'
 
+import FeedCard from '../../../components/FeedCard'
 import graphqlRequestClient from '../../../services/api'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { GetPostType, GetPostsQuery, useGetPostsQuery } from '../../../services/api/fifoServer'
-import FeedCard from '../../../components/FeedCard'
 
 const Home = ({ postType = GetPostType.PostAndRoom }) => {
   const {
