@@ -3,6 +3,7 @@ import { SafeAreaView, ActivityIndicator, StyleSheet, FlatList, Text, View } fro
 import graphqlRequestClient from '../../../services/api'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { GetPostType, useGetPostsQuery } from '../../../services/api/fifoServer'
+import FeedCard from '../../../components/FeedCard'
 
 const Home = ({ postType = GetPostType.PostAndRoom }) => {
   const {
@@ -61,7 +62,7 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
         <FlatList
           data={postsData.pages.map((page) => page.getPosts.posts).flat()}
           keyExtractor={feedItemKeyExtractor}
-          renderItem={({ item }) => <Text>{item.content}</Text>}
+          renderItem={({ item }) => <FeedCard post={item} />}
           onEndReached={loadNextPageData}
         />
       ) : null}
