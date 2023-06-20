@@ -1,4 +1,4 @@
-import { SafeAreaView, ActivityIndicator, StyleSheet, FlatList, Text } from 'react-native'
+import { SafeAreaView, ActivityIndicator, StyleSheet, FlatList, Text, View } from 'react-native'
 
 import graphqlRequestClient from '../../../services/api'
 import { useInfiniteQuery } from '@tanstack/react-query'
@@ -7,8 +7,6 @@ import { GetPostType, useGetPostsQuery } from '../../../services/api/fifoServer'
 const Home = ({ postType = GetPostType.PostAndRoom }) => {
   const {
     data: postsData,
-    status,
-    error,
     isInitialLoading,
     isFetchingNextPage,
     hasNextPage,
@@ -53,11 +51,19 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
 
   return (
     <SafeAreaView style={styles.feedContainer}>
-      <FlatList
-        data={postsData?.pages.map((page) => page.getPosts.posts).flat()}
-        keyExtractor={feedItemKeyExtractor}
-        renderItem={({ item }) => <Text>{item.content}</Text>}
-      />
+      {postsData ? (
+        <FlatList
+          data={postsData.pages.map((page) => page.getPosts.posts).flat()}
+          keyExtractor={feedItemKeyExtractor}
+          renderItem={({ item }) => <Text>{item.content}</Text>}
+        />
+      ) : null}
+
+      {isFetchingNextPage ? (
+        <View>
+          <ActivityIndicator />
+        </View>
+      ) : null}
     </SafeAreaView>
   )
 }
