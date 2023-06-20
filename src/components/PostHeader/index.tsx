@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 
 interface PostHeaderProps {
   name: string
@@ -9,7 +9,14 @@ interface PostHeaderProps {
 const PostHeader = ({ name, username, profileImageUrl }: PostHeaderProps) => {
   return (
     <View>
-      <Text>Post Header Component!</Text>
+      {profileImageUrl !== '' ? (
+        <Image style={{ width: 40, height: 40, borderRadius: 9999 }} source={{ uri: profileImageUrl }} />
+      ) : null}
+
+      <View>
+        <Text>{name}</Text>
+        <Text>{'@' + username}</Text>
+      </View>
     </View>
   )
 }
