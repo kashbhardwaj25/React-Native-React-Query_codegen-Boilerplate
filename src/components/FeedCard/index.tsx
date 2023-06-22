@@ -6,6 +6,7 @@ import AppText from '../shared/AppText'
 import FeedCardMenu from '../FeedCardMenu'
 import FeedCardContent from '../FeedCardContent'
 import PostActionButtons from '../PostActionButtons'
+import { GRAY_COLOR_200 } from '../../styles/colorConstants'
 
 interface PostTypes {
   post: GetPostsQuery['getPosts']['posts'][0]
@@ -23,12 +24,11 @@ const FeedCard = ({ post }: PostTypes) => {
         <FeedCardMenu />
       </View>
       <View>
-        <FeedCardContent />
+        <FeedCardContent content={post.content || ''} />
       </View>
       <View>
         <PostActionButtons />
       </View>
-      <AppText>{post.content}</AppText>
     </View>
   )
 }
@@ -38,9 +38,11 @@ export default FeedCard
 const styles = StyleSheet.create({
   container: {
     paddingTop: 6,
-    paddingBottom: 6,
+    paddingBottom: 12,
     paddingLeft: 12,
     paddingRight: 12,
+    borderBottomWidth: 0.5,
+    borderBottomColor: GRAY_COLOR_200,
   },
   postHeaderAndMenu: {
     display: 'flex',

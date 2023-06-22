@@ -65,6 +65,7 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
       {currentUserDetails ? <TopBar currentUserDetails={currentUserDetails} /> : null}
       {postsData ? (
         <FlatList
+          style={{ marginTop: 8 }}
           data={postsData.pages.map((page) => page.getPosts.posts).flat()}
           keyExtractor={feedItemKeyExtractor}
           renderItem={({ item }) => <FeedCard post={item} />}
