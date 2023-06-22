@@ -4,6 +4,8 @@ import FeedCard from '../../../components/FeedCard'
 import graphqlRequestClient from '../../../services/api'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { GetPostType, GetPostsQuery, useGetPostsQuery } from '../../../services/api/fifoServer'
+import TopBar from '../../../components/TopBar'
+import { WHITE_COLOR } from '../../../styles/colorConstants'
 
 const Home = ({ postType = GetPostType.PostAndRoom }) => {
   const {
@@ -58,6 +60,7 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
 
   return (
     <SafeAreaView style={styles.feedContainer}>
+      <TopBar />
       {postsData ? (
         <FlatList
           data={postsData.pages.map((page) => page.getPosts.posts).flat()}
@@ -87,5 +90,6 @@ const styles = StyleSheet.create({
   },
   feedContainer: {
     flex: 1,
+    backgroundColor: WHITE_COLOR,
   },
 })

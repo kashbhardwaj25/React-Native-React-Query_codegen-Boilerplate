@@ -1,5 +1,3 @@
-// import { createNativeStackNavigator } from '@react-navigation/native-stack'
-
 import useUserStore from '../../store/userStore'
 import graphqlRequestClient from '../../services/api'
 import { useMeQuery } from '../../services/api/fifoServer'
