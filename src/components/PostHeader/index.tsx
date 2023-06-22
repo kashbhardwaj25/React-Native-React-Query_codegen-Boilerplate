@@ -19,7 +19,7 @@ const PostHeader = ({ name, username, profileImageUrl }: PostHeaderProps) => {
       )}
 
       <View>
-        <AppText>{name}</AppText>
+        <AppText style={{ fontWeight: 'bold' }}>{name}</AppText>
         <AppText>{'@' + username}</AppText>
       </View>
     </View>
