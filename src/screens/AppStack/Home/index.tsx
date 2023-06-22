@@ -6,8 +6,11 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { GetPostType, GetPostsQuery, useGetPostsQuery } from '../../../services/api/fifoServer'
 import TopBar from '../../../components/TopBar'
 import { WHITE_COLOR } from '../../../styles/colorConstants'
+import { useMeQueryData } from '../../../hooks/getQueryDataHooks'
 
 const Home = ({ postType = GetPostType.PostAndRoom }) => {
+  const { currentUserDetails } = useMeQueryData()
+
   const {
     data: postsData,
     isInitialLoading,
@@ -16,7 +19,6 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
     fetchNextPage,
   } = useInfiniteQuery(
     useGetPostsQuery.getKey({ type: postType }),
-
     async ({ pageParam = new Date().toISOString() }) =>
       useGetPostsQuery.fetcher(graphqlRequestClient(), {
         limit: 10,
@@ -60,7 +62,7 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
 
   return (
     <SafeAreaView style={styles.feedContainer}>
-      <TopBar />
+      {currentUserDetails ? <TopBar currentUserDetails={currentUserDetails} /> : null}
       {postsData ? (
         <FlatList
           data={postsData.pages.map((page) => page.getPosts.posts).flat()}
