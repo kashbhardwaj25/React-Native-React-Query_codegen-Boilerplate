@@ -2,7 +2,6 @@ import { View, StyleSheet } from 'react-native'
 import { GetPostsQuery } from '../../services/api/fifoServer'
 
 import PostHeader from '../PostHeader'
-import AppText from '../shared/AppText'
 import FeedCardMenu from '../FeedCardMenu'
 import FeedCardContent from '../FeedCardContent'
 import PostActionButtons from '../PostActionButtons'
@@ -17,17 +16,25 @@ const FeedCard = ({ post }: PostTypes) => {
     <View style={styles.container}>
       <View style={styles.postHeaderAndMenu}>
         <PostHeader
-          name={post.createdBy.name || ''}
-          username={post.createdBy.username || ''}
-          profileImageUrl={post.createdBy.profileImage?.medium || ''}
+          name={(post.originalPost ? post.originalPost.createdBy.name : post.createdBy.name) || ''}
+          username={(post.originalPost ? post.originalPost.createdBy.username : post.createdBy.username) || ''}
+          profileImageUrl={
+            (post.originalPost
+              ? post.originalPost.createdBy.profileImage?.medium
+              : post.createdBy.profileImage?.medium) || ''
+          }
         />
         <FeedCardMenu />
       </View>
       <View>
-        <FeedCardContent content={post.content || ''} />
+        <FeedCardContent content={(post.originalPost ? post.originalPost.content : post.content) || ''} />
       </View>
       <View>
-        <PostActionButtons />
+        <PostActionButtons
+          likeCount={post.originalPost ? post.originalPost.likeCount : post.likeCount}
+          repostCount={post.originalPost ? post.originalPost.repostCount : post.repostCount}
+          commentCount={post.originalPost ? post.originalPost.commentCount : post.commentCount}
+        />
       </View>
     </View>
   )

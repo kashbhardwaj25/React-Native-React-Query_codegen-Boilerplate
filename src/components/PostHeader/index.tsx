@@ -2,6 +2,7 @@ import { View, Image, StyleSheet } from 'react-native'
 
 import AppText from '../shared/AppText'
 import AvatarIcon from '../../assets/icons/AvatarIcon'
+import { BLUE_COLOR_400 } from '../../styles/colorConstants'
 
 interface PostHeaderProps {
   name: string
@@ -20,7 +21,7 @@ const PostHeader = ({ name, username, profileImageUrl }: PostHeaderProps) => {
 
       <View>
         <AppText style={{ fontWeight: 'bold' }}>{name}</AppText>
-        <AppText>{'@' + username}</AppText>
+        <AppText style={{ color: BLUE_COLOR_400 }}>{'@' + username}</AppText>
       </View>
     </View>
   )
