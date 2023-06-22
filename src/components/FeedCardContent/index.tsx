@@ -1,9 +1,10 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import AppText from '../shared/AppText'
 
 const FeedCardContent = () => {
   return (
     <View>
-      <Text>Feed Card Content!</Text>
+      <AppText>Feed Card Content!</AppText>
     </View>
   )
 }

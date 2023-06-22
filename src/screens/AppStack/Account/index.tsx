@@ -1,7 +1,8 @@
-import { SafeAreaView, Text, TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native'
+import { SafeAreaView, TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native'
 
 import useAuthStore from '../../../store/userStore'
 import { resetTokens } from '../../../utils/tokenHelper'
+import AppText from '../../../components/shared/AppText'
 import { YELLOW_COLOR_300 } from '../../../styles/colorConstants'
 
 const Account = () => {
@@ -17,7 +18,7 @@ const Account = () => {
             setIsLoggedIn(false)
           }}
         >
-          <Text style={{ textAlign: 'center' }}>Sign Out</Text>
+          <AppText style={{ textAlign: 'center' }}>Sign Out</AppText>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

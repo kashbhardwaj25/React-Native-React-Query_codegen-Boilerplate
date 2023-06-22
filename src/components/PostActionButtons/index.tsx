@@ -1,9 +1,11 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+
+import AppText from '../shared/AppText'
 
 const PostActionButtons = () => {
   return (
     <View>
-      <Text>Post Action Buttons!</Text>
+      <AppText>Post Action Buttons!</AppText>
     </View>
   )
 }

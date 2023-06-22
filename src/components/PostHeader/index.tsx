@@ -1,4 +1,6 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native'
+
+import AppText from '../shared/AppText'
 import AvatarIcon from '../../assets/icons/AvatarIcon'
 
 interface PostHeaderProps {
@@ -17,8 +19,8 @@ const PostHeader = ({ name, username, profileImageUrl }: PostHeaderProps) => {
       )}
 
       <View>
-        <Text>{name}</Text>
-        <Text>{'@' + username}</Text>
+        <AppText>{name}</AppText>
+        <AppText>{'@' + username}</AppText>
       </View>
     </View>
   )

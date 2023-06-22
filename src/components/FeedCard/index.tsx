@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { GetPostsQuery } from '../../services/api/fifoServer'
 
 import PostHeader from '../PostHeader'
+import AppText from '../shared/AppText'
 import FeedCardMenu from '../FeedCardMenu'
 import FeedCardContent from '../FeedCardContent'
 import PostActionButtons from '../PostActionButtons'
@@ -27,7 +28,7 @@ const FeedCard = ({ post }: PostTypes) => {
       <View>
         <PostActionButtons />
       </View>
-      <Text>{post.content}</Text>
+      <AppText>{post.content}</AppText>
     </View>
   )
 }

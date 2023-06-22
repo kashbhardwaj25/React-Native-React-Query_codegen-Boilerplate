@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import type { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { Pressable, Text, View, TextInput, Platform, Dimensions, Image } from 'react-native'
+import { Pressable, View, TextInput, Platform, Dimensions, Image } from 'react-native'
 
 import useAuthStore from '../../../store/userStore'
 import { setTokens } from '../../../utils/tokenHelper'
 import graphqlRequestClient from '../../../services/api'
+import AppText from '../../../components/shared/AppText'
 import { RootStackParamList } from '../../../types/navigationTypes'
 import { useSignInMutation } from '../../../services/api/fifoServer'
 import { BLACK_COLOR, BLUE_COLOR_100, WHITE_COLOR, YELLOW_COLOR_300 } from '../../../styles/colorConstants'
@@ -60,10 +61,10 @@ const SignIn = ({ navigation }: SignInProps) => {
           })
         }}
       >
-        <Text style={{ textAlign: 'center' }}>{isLoading ? 'Loading ...' : 'Sign In'}</Text>
+        <AppText style={{ textAlign: 'center' }}>{isLoading ? 'Loading ...' : 'Sign In'}</AppText>
       </TouchableOpacity>
       <Pressable onPress={() => navigation.navigate('SignUp')}>
-        <Text style={{ color: WHITE_COLOR, marginTop: 16 }}>New User? Register here!</Text>
+        <AppText style={{ color: WHITE_COLOR, marginTop: 16 }}>New User? Register here!</AppText>
       </Pressable>
     </View>
   )

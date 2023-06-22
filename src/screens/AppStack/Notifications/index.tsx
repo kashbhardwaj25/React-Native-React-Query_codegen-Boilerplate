@@ -1,9 +1,11 @@
-import { SafeAreaView, Text } from 'react-native'
+import { SafeAreaView } from 'react-native'
+
+import AppText from '../../../components/shared/AppText'
 
 const Notifications = () => {
   return (
     <SafeAreaView>
-      <Text>This is the User's Notifications</Text>
+      <AppText>This is the User's Notifications</AppText>
     </SafeAreaView>
   )
 }
