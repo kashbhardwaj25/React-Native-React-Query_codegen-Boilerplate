@@ -2,7 +2,7 @@ import { View, StyleSheet } from 'react-native'
 
 import AppText from '../shared/AppText'
 
-const FeedCardContent = ({ content }: { content: string }) => {
+const FeedCardContent = ({ content, media }: { content: string; media: string }) => {
   return (
     <View style={styles.postTextWrapper}>
       <AppText>{content}</AppText>

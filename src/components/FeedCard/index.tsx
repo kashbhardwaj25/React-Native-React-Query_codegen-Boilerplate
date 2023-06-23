@@ -35,7 +35,13 @@ const FeedCard = ({ post }: PostTypes) => {
         <FeedCardMenu />
       </View>
       <View>
-        <FeedCardContent content={(post.originalPost ? post.originalPost.content : post.content) || ''} />
+        <FeedCardContent
+          content={(post.originalPost ? post.originalPost.content : post.content) || ''}
+          media={
+            (post.postType === PostType.Repost ? post.originalPost?.media[0].url.medium : post.media[0].url.medium) ||
+            ''
+          }
+        />
       </View>
       <View>
         <PostActionButtons
