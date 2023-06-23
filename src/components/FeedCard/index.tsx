@@ -1,11 +1,12 @@
 import { View, StyleSheet } from 'react-native'
-import { GetPostsQuery } from '../../services/api/fifoServer'
+import { GetPostsQuery, PostType } from '../../services/api/fifoServer'
 
 import PostHeader from '../PostHeader'
+import AppText from '../shared/AppText'
 import FeedCardMenu from '../FeedCardMenu'
 import FeedCardContent from '../FeedCardContent'
 import PostActionButtons from '../PostActionButtons'
-import { GRAY_COLOR_200 } from '../../styles/colorConstants'
+import { BLUE_COLOR_600, GRAY_COLOR_200 } from '../../styles/colorConstants'
 
 interface PostTypes {
   post: GetPostsQuery['getPosts']['posts'][0]
@@ -14,6 +15,11 @@ interface PostTypes {
 const FeedCard = ({ post }: PostTypes) => {
   return (
     <View style={styles.container}>
+      {post.originalPost && post.postType === PostType.Repost ? (
+        <View style={{ marginBottom: 8, marginTop: 8 }}>
+          <AppText style={{ color: BLUE_COLOR_600 }}>{post.createdBy.name + 'reposted'}</AppText>
+        </View>
+      ) : null}
       <View style={styles.postHeaderAndMenu}>
         <PostHeader
           name={(post.originalPost ? post.originalPost.createdBy.name : post.createdBy.name) || ''}
