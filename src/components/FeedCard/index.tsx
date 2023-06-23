@@ -7,6 +7,7 @@ import FeedCardMenu from '../FeedCardMenu'
 import FeedCardContent from '../FeedCardContent'
 import PostActionButtons from '../PostActionButtons'
 import { BLUE_COLOR_600, GRAY_COLOR_200 } from '../../styles/colorConstants'
+import Repost from '../../assets/icons/Repost'
 
 interface PostTypes {
   post: GetPostsQuery['getPosts']['posts'][0]
@@ -16,8 +17,9 @@ const FeedCard = ({ post }: PostTypes) => {
   return (
     <View style={styles.container}>
       {post.originalPost && post.postType === PostType.Repost ? (
-        <View style={{ marginBottom: 8, marginTop: 8 }}>
-          <AppText style={{ color: BLUE_COLOR_600 }}>{post.createdBy.name + 'reposted'}</AppText>
+        <View style={styles.repostText}>
+          <Repost fill={BLUE_COLOR_600} width={20} height={20} />
+          <AppText style={{ marginLeft: 8 }}>{post.createdBy.name + ' reposted'}</AppText>
         </View>
       ) : null}
       <View style={styles.postHeaderAndMenu}>
@@ -61,5 +63,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  repostText: {
+    marginBottom: 8,
+    marginTop: 8,
+    display: 'flex',
+    flexDirection: 'row',
   },
 })
