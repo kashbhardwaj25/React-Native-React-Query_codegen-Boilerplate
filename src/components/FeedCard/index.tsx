@@ -4,10 +4,10 @@ import { GetPostsQuery, PostType } from '../../services/api/fifoServer'
 import PostHeader from '../PostHeader'
 import AppText from '../shared/AppText'
 import FeedCardMenu from '../FeedCardMenu'
+import Repost from '../../assets/icons/Repost'
 import FeedCardContent from '../FeedCardContent'
 import PostActionButtons from '../PostActionButtons'
 import { BLUE_COLOR_600, GRAY_COLOR_200 } from '../../styles/colorConstants'
-import Repost from '../../assets/icons/Repost'
 
 interface PostTypes {
   post: GetPostsQuery['getPosts']['posts'][0]
@@ -19,7 +19,7 @@ const FeedCard = ({ post }: PostTypes) => {
       {post.originalPost && post.postType === PostType.Repost ? (
         <View style={styles.repostText}>
           <Repost fill={BLUE_COLOR_600} width={20} height={20} />
-          <AppText style={{ marginLeft: 8 }}>{post.createdBy.name + ' reposted'}</AppText>
+          <AppText style={{ marginLeft: 4 }}>{post.createdBy.name + ' reposted'}</AppText>
         </View>
       ) : null}
       <View style={styles.postHeaderAndMenu}>
@@ -69,5 +69,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
   },
 })
