@@ -1,12 +1,12 @@
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { SafeAreaView, ActivityIndicator, StyleSheet, FlatList, View } from 'react-native'
 
+import TopBar from '../../../components/TopBar'
 import FeedCard from '../../../components/FeedCard'
 import graphqlRequestClient from '../../../services/api'
-import { useInfiniteQuery } from '@tanstack/react-query'
-import { GetPostType, GetPostsQuery, useGetPostsQuery } from '../../../services/api/fifoServer'
-import TopBar from '../../../components/TopBar'
 import { WHITE_COLOR } from '../../../styles/colorConstants'
 import { useMeQueryData } from '../../../hooks/getQueryDataHooks'
+import { GetPostType, GetPostsQuery, useGetPostsQuery } from '../../../services/api/fifoServer'
 
 const Home = ({ postType = GetPostType.PostAndRoom }) => {
   const { currentUserDetails } = useMeQueryData()

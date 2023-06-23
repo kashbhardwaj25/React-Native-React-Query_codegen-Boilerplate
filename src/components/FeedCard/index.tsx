@@ -39,8 +39,10 @@ const FeedCard = ({ post }: PostTypes) => {
           content={(post.originalPost ? post.originalPost.content : post.content) || ''}
           media={
             (post.postType === PostType.Repost
-              ? post.originalPost?.media[0] && post.originalPost?.media[0].url && post.originalPost?.media[0].url.medium
-              : post.media[0] && post.media[0].url && post.media[0].url.medium) || ''
+              ? post.originalPost?.media[0] &&
+                post.originalPost?.media[0].url &&
+                post.originalPost?.media[0].url.original
+              : post.media[0] && post.media[0].url && post.media[0].url.original) || ''
           }
         />
       </View>
