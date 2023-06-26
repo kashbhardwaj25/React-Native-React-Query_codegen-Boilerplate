@@ -2,7 +2,7 @@ import useUserStore from '../../store/userStore'
 import graphqlRequestClient from '../../services/api'
 import { useMeQuery } from '../../services/api/fifoServer'
 import { getErrorMessageAndCode } from '../../utils/helpers'
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import Home from './Home'
 import Profile from './Profile'
@@ -13,9 +13,8 @@ import Settings from '../../assets/icons/Settings'
 import { resetTokens } from '../../utils/tokenHelper'
 import AccountIcon from '../../assets/icons/AccountIcon'
 import NotificationsIcon from '../../assets/icons/Notifications'
-import { BLACK_COLOR, GRAY_COLOR_200, WHITE_COLOR } from '../../styles/colorConstants'
 
-const Tab = createMaterialBottomTabNavigator()
+const Tab = createBottomTabNavigator()
 
 const AppStack = () => {
   const { setIsLoggedIn } = useUserStore()
@@ -32,11 +31,7 @@ const AppStack = () => {
   })
 
   return (
-    <Tab.Navigator
-      activeColor={BLACK_COLOR}
-      inactiveColor={BLACK_COLOR}
-      barStyle={{ backgroundColor: WHITE_COLOR, borderTopColor: GRAY_COLOR_200, borderTopWidth: 0.5 }}
-    >
+    <Tab.Navigator>
       <Tab.Screen
         name="Home"
         component={Home}
