@@ -13,7 +13,16 @@ const Tab = createBottomTabNavigator()
 
 const AppStack = () => {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          paddingTop: 8,
+          paddingBottom: 8,
+          height: 64,
+        },
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={Home}
