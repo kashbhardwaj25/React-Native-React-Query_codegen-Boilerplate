@@ -13,7 +13,7 @@ import { GetPostType, GetPostsQuery, useGetPostsQuery, useMeQuery } from '../../
 const Home = ({ postType = GetPostType.PostAndRoom }) => {
   const { setIsLoggedIn } = useUserStore()
 
-  const { data: currentUserDetails } = useMeQuery(graphqlRequestClient(), undefined, {
+  const { data: currentUserDetails, isLoading: loadingUserDetails } = useMeQuery(graphqlRequestClient(), undefined, {
     onError: async (error) => {
       const { code } = getErrorMessageAndCode(error)
 
@@ -59,7 +59,7 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
     return item.id
   }
 
-  if (isInitialLoading) {
+  if (isInitialLoading || loadingUserDetails) {
     return (
       <SafeAreaView style={styles.loadingContainer}>
         <ActivityIndicator />
