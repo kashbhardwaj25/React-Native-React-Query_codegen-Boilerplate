@@ -3,13 +3,26 @@ import { SafeAreaView, ActivityIndicator, StyleSheet, FlatList, View } from 'rea
 
 import TopBar from '../../../components/TopBar'
 import FeedCard from '../../../components/FeedCard'
+import useUserStore from '../../../store/userStore'
 import graphqlRequestClient from '../../../services/api'
+import { resetTokens } from '../../../utils/tokenHelper'
 import { WHITE_COLOR } from '../../../styles/colorConstants'
-import { useMeQueryData } from '../../../hooks/getQueryDataHooks'
-import { GetPostType, GetPostsQuery, useGetPostsQuery } from '../../../services/api/fifoServer'
+import { getErrorMessageAndCode } from '../../../utils/helpers'
+import { GetPostType, GetPostsQuery, useGetPostsQuery, useMeQuery } from '../../../services/api/fifoServer'
 
 const Home = ({ postType = GetPostType.PostAndRoom }) => {
-  const { currentUserDetails } = useMeQueryData()
+  const { setIsLoggedIn } = useUserStore()
+
+  const { data: currentUserDetails } = useMeQuery(graphqlRequestClient(), undefined, {
+    onError: async (error) => {
+      const { code } = getErrorMessageAndCode(error)
+
+      if (code === 'UNAUTHENTICATED') {
+        setIsLoggedIn(false)
+        await resetTokens()
+      }
+    },
+  })
 
   const {
     data: postsData,

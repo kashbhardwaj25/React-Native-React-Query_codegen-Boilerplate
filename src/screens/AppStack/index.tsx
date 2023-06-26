@@ -1,7 +1,3 @@
-import useUserStore from '../../store/userStore'
-import graphqlRequestClient from '../../services/api'
-import { useMeQuery } from '../../services/api/fifoServer'
-import { getErrorMessageAndCode } from '../../utils/helpers'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import Home from './Home'
@@ -10,28 +6,14 @@ import Account from './Account'
 import Notifications from './Notifications'
 import HomeIcon from '../../assets/icons/Home'
 import Settings from '../../assets/icons/Settings'
-import { resetTokens } from '../../utils/tokenHelper'
 import AccountIcon from '../../assets/icons/AccountIcon'
 import NotificationsIcon from '../../assets/icons/Notifications'
 
 const Tab = createBottomTabNavigator()
 
 const AppStack = () => {
-  const { setIsLoggedIn } = useUserStore()
-
-  useMeQuery(graphqlRequestClient(), undefined, {
-    onError: async (error) => {
-      const { code } = getErrorMessageAndCode(error)
-
-      if (code === 'UNAUTHENTICATED') {
-        setIsLoggedIn(false)
-        await resetTokens()
-      }
-    },
-  })
-
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name="Home"
         component={Home}
