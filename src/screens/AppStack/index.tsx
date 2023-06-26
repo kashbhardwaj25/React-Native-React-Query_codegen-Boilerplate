@@ -7,6 +7,7 @@ import Notifications from './Notifications'
 import HomeIcon from '../../assets/icons/Home'
 import Settings from '../../assets/icons/Settings'
 import AccountIcon from '../../assets/icons/AccountIcon'
+import { BLACK_COLOR } from '../../styles/colorConstants'
 import NotificationsIcon from '../../assets/icons/Notifications'
 
 const Tab = createBottomTabNavigator()
@@ -29,6 +30,10 @@ const AppStack = () => {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: () => <HomeIcon width={24} height={24} />,
+          tabBarLabelStyle: {
+            fontWeight: 'bold',
+            color: BLACK_COLOR,
+          },
         }}
       />
       <Tab.Screen
@@ -37,6 +42,10 @@ const AppStack = () => {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: () => <AccountIcon width={24} height={24} />,
+          tabBarLabelStyle: {
+            fontWeight: 'bold',
+            color: BLACK_COLOR,
+          },
         }}
       />
       <Tab.Screen
@@ -45,6 +54,10 @@ const AppStack = () => {
         options={{
           tabBarLabel: 'Notifications',
           tabBarIcon: () => <NotificationsIcon width={24} height={24} />,
+          tabBarLabelStyle: {
+            fontWeight: 'bold',
+            color: BLACK_COLOR,
+          },
         }}
       />
       <Tab.Screen
@@ -53,6 +66,10 @@ const AppStack = () => {
         options={{
           tabBarLabel: 'Settings',
           tabBarIcon: () => <Settings width={24} height={24} />,
+          tabBarLabelStyle: {
+            fontWeight: 'bold',
+            color: BLACK_COLOR,
+          },
         }}
       />
     </Tab.Navigator>
