@@ -1,7 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { SafeAreaView, ActivityIndicator, StyleSheet, FlatList, View } from 'react-native'
 
-import TopBar from '../../../components/TopBar'
 import FeedCard from '../../../components/FeedCard'
 import useUserStore from '../../../store/userStore'
 import graphqlRequestClient from '../../../services/api'
@@ -75,7 +74,6 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
 
   return (
     <SafeAreaView style={styles.feedContainer}>
-      {/* {currentUserDetails ? <TopBar currentUserDetails={currentUserDetails} /> : null} */}
       {postsData ? (
         <FlatList
           style={{ paddingTop: 8 }}
