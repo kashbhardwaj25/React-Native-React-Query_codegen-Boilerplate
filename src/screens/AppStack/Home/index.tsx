@@ -75,7 +75,7 @@ const Home = ({ postType = GetPostType.PostAndRoom }) => {
 
   return (
     <SafeAreaView style={styles.feedContainer}>
-      {currentUserDetails ? <TopBar currentUserDetails={currentUserDetails} /> : null}
+      {/* {currentUserDetails ? <TopBar currentUserDetails={currentUserDetails} /> : null} */}
       {postsData ? (
         <FlatList
           style={{ paddingTop: 8 }}

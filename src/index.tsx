@@ -1,10 +1,12 @@
+import 'react-native-gesture-handler'
+
+import { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import AuthStack from './screens/AuthStack'
 import AppStack from './screens/AppStack'
+import AuthStack from './screens/AuthStack'
 import useUserStore from './store/userStore'
-import { useEffect, useState } from 'react'
 import { getTokens } from './utils/tokenHelper'
 import SplashScreen from './components/SplashScreen'
 
