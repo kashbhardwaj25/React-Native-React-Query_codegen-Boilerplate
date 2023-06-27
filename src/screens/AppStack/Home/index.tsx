@@ -12,7 +12,7 @@ import { GetPostType, GetPostsQuery, useGetPostsQuery, useMeQuery } from '../../
 const Home = ({ postType = GetPostType.PostAndRoom }) => {
   const { setIsLoggedIn } = useUserStore()
 
-  const { data: currentUserDetails, isLoading: loadingUserDetails } = useMeQuery(graphqlRequestClient(), undefined, {
+  const { isLoading: loadingUserDetails } = useMeQuery(graphqlRequestClient(), undefined, {
     onError: async (error) => {
       const { code } = getErrorMessageAndCode(error)
 
