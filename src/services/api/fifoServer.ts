@@ -2722,6 +2722,8 @@ export type MeQuery = {
     tempEmail?: string | null
     userTimeZone: string
     usernameAttemptLefts?: number | null
+    followersCount: number
+    followingCount: number
     profileImage?: {
       __typename?: 'VariableQualityImage'
       small?: string | null
@@ -2930,6 +2932,8 @@ export const MeDocument = `
     tempEmail
     userTimeZone
     usernameAttemptLefts
+    followersCount
+    followingCount
   }
 }
     `

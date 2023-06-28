@@ -17,6 +17,8 @@ query Me {
     tempEmail
     userTimeZone
     usernameAttemptLefts
+    followersCount
+    followingCount
   }
 }
 
@@ -39,20 +41,8 @@ mutation ResendOTP($phoneNumber: String!) {
   }
 }
 
-mutation Signup(
-  $phoneNumber: String!
-  $name: String!
-  $password: String!
-  $userTimeZone: String!
-  $token: String!
-) {
-  signup(
-    phoneNumber: $phoneNumber
-    name: $name
-    password: $password
-    userTimeZone: $userTimeZone
-    token: $token
-  ) {
+mutation Signup($phoneNumber: String!, $name: String!, $password: String!, $userTimeZone: String!, $token: String!) {
+  signup(phoneNumber: $phoneNumber, name: $name, password: $password, userTimeZone: $userTimeZone, token: $token) {
     message
   }
 }

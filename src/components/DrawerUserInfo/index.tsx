@@ -2,6 +2,7 @@ import { Image, StyleSheet, View } from 'react-native'
 
 import AppText from '../shared/AppText'
 import AvatarIcon from '../../assets/icons/AvatarIcon'
+import { GRAY_COLOR_200 } from '../../styles/colorConstants'
 import { useMeQueryData } from '../../hooks/getQueryDataHooks'
 
 const DrawerUserInfo = () => {
@@ -9,6 +10,8 @@ const DrawerUserInfo = () => {
 
   const name = currentUserDetails.me.name
   const username = currentUserDetails.me.username
+  const followersCount = currentUserDetails.me.followersCount
+  const followingCount = currentUserDetails.me.followingCount
   const profileImage = currentUserDetails.me.profileImage?.original
 
   return (
@@ -16,6 +19,13 @@ const DrawerUserInfo = () => {
       {profileImage ? <Image style={styles.profileImageAvatar} source={{ uri: profileImage }} /> : <AvatarIcon />}
       <AppText style={styles.nameWrapper}>{name}</AppText>
       <AppText style={styles.usernameWrapper}>{'@' + username}</AppText>
+
+      <View style={styles.userStatsWrapper}>
+        <AppText style={styles.usernameWrapper}>{followingCount + ' Following'}</AppText>
+        <AppText style={styles.usernameWrapper}>{followersCount + ' Followers'}</AppText>
+      </View>
+
+      <View style={styles.divider} />
     </View>
   )
 }
@@ -25,6 +35,12 @@ export default DrawerUserInfo
 const styles = StyleSheet.create({
   drawerUserInfoWrapper: {
     padding: 10,
+  },
+  divider: {
+    height: 0.5,
+    marginLeft: 10,
+    marginTop: 24,
+    backgroundColor: GRAY_COLOR_200,
   },
   profileImageAvatar: {
     height: 60,
@@ -37,5 +53,8 @@ const styles = StyleSheet.create({
   },
   usernameWrapper: {
     marginTop: 2,
+  },
+  userStatsWrapper: {
+    marginTop: 16,
   },
 })
