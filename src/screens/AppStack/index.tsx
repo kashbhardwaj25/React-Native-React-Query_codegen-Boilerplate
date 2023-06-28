@@ -6,11 +6,14 @@ import Account from './Account'
 import Notifications from './Notifications'
 import useUserStore from '../../store/userStore'
 import { resetTokens } from '../../utils/tokenHelper'
+import DrawerUserInfo from '../../components/DrawerUserInfo'
+import { useMeQueryData } from '../../hooks/getQueryDataHooks'
 
 const Drawer = createDrawerNavigator()
 
 const AppStack = () => {
   const { setIsLoggedIn } = useUserStore()
+  const { currentUserDetails } = useMeQueryData()
 
   return (
     <Drawer.Navigator
@@ -18,6 +21,7 @@ const AppStack = () => {
       drawerContent={(props) => {
         return (
           <DrawerContentScrollView {...props}>
+            {currentUserDetails ? <DrawerUserInfo /> : null}
             <DrawerItemList {...props} />
             <DrawerItem
               label="Logout"
