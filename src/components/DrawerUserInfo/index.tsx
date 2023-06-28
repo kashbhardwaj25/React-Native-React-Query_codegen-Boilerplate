@@ -19,8 +19,12 @@ const DrawerUserInfo = ({ currentUserDetails }: { currentUserDetails: MeQuery })
       <AppText style={styles.usernameWrapper}>{'@' + username}</AppText>
 
       <View style={styles.userStatsWrapper}>
-        <AppText style={styles.usernameWrapper}>{followingCount + ' Following'}</AppText>
-        <AppText style={styles.usernameWrapper}>{followersCount + ' Followers'}</AppText>
+        <AppText style={styles.usernameWrapper}>
+          <AppText style={styles.bold}>{followingCount}</AppText> Following
+        </AppText>
+        <AppText style={styles.usernameWrapper}>
+          <AppText style={styles.bold}>{followersCount}</AppText> Followers
+        </AppText>
       </View>
 
       <View style={styles.divider} />
@@ -54,5 +58,8 @@ const styles = StyleSheet.create({
   },
   userStatsWrapper: {
     marginTop: 16,
+  },
+  bold: {
+    fontWeight: 'bold',
   },
 })
