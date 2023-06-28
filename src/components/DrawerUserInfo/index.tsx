@@ -6,11 +6,11 @@ import { MeQuery } from '../../services/api/fifoServer'
 import { GRAY_COLOR_200 } from '../../styles/colorConstants'
 
 const DrawerUserInfo = ({ currentUserDetails }: { currentUserDetails: MeQuery }) => {
-  const name = currentUserDetails?.me.name
-  const username = currentUserDetails?.me.username
-  const followersCount = currentUserDetails?.me.followersCount
-  const followingCount = currentUserDetails?.me.followingCount
-  const profileImage = currentUserDetails?.me.profileImage?.original
+  const name = currentUserDetails.me.name
+  const username = currentUserDetails.me.username
+  const followersCount = currentUserDetails.me.followersCount
+  const followingCount = currentUserDetails.me.followingCount
+  const profileImage = currentUserDetails.me.profileImage?.original
 
   return (
     <View style={styles.drawerUserInfoWrapper}>
