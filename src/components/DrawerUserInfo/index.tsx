@@ -2,17 +2,15 @@ import { Image, StyleSheet, View } from 'react-native'
 
 import AppText from '../shared/AppText'
 import AvatarIcon from '../../assets/icons/AvatarIcon'
+import { MeQuery } from '../../services/api/fifoServer'
 import { GRAY_COLOR_200 } from '../../styles/colorConstants'
-import { useMeQueryData } from '../../hooks/getQueryDataHooks'
 
-const DrawerUserInfo = () => {
-  const { currentUserDetails } = useMeQueryData()
-
-  const name = currentUserDetails.me.name
-  const username = currentUserDetails.me.username
-  const followersCount = currentUserDetails.me.followersCount
-  const followingCount = currentUserDetails.me.followingCount
-  const profileImage = currentUserDetails.me.profileImage?.original
+const DrawerUserInfo = ({ currentUserDetails }: { currentUserDetails: MeQuery }) => {
+  const name = currentUserDetails?.me.name
+  const username = currentUserDetails?.me.username
+  const followersCount = currentUserDetails?.me.followersCount
+  const followingCount = currentUserDetails?.me.followingCount
+  const profileImage = currentUserDetails?.me.profileImage?.original
 
   return (
     <View style={styles.drawerUserInfoWrapper}>

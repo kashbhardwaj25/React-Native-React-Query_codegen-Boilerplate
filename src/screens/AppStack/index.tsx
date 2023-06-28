@@ -6,14 +6,17 @@ import Account from './Account'
 import Notifications from './Notifications'
 import useUserStore from '../../store/userStore'
 import { resetTokens } from '../../utils/tokenHelper'
+import graphqlRequestClient from '../../services/api'
+import { useMeQuery } from '../../services/api/fifoServer'
 import DrawerUserInfo from '../../components/DrawerUserInfo'
-import { useMeQueryData } from '../../hooks/getQueryDataHooks'
 
 const Drawer = createDrawerNavigator()
 
 const AppStack = () => {
   const { setIsLoggedIn } = useUserStore()
-  const { currentUserDetails } = useMeQueryData()
+  const { data: currentUserDetails } = useMeQuery(graphqlRequestClient(), undefined, {
+    enabled: false,
+  })
 
   return (
     <Drawer.Navigator
@@ -21,7 +24,7 @@ const AppStack = () => {
       drawerContent={(props) => {
         return (
           <DrawerContentScrollView {...props}>
-            {currentUserDetails ? <DrawerUserInfo /> : null}
+            {currentUserDetails ? <DrawerUserInfo currentUserDetails={currentUserDetails} /> : null}
             <DrawerItemList {...props} />
             <DrawerItem
               label="Logout"
