@@ -1,7 +1,8 @@
 export type RootStackParamList = {
-  SignIn: undefined;
-  SignUp: undefined;
-  VerifyOtp: undefined;
-  Home: undefined;
-  AppStack: undefined;
-};
+  SignIn: undefined
+  Home: undefined
+  Profile: undefined
+  Notifications: undefined
+  Account: undefined
+  AppStack: undefined
+}
