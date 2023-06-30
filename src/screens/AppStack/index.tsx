@@ -1,14 +1,14 @@
 import { DrawerContentScrollView, DrawerItem, DrawerItemList, createDrawerNavigator } from '@react-navigation/drawer'
 
-import Home from './Home'
-import Profile from './Profile'
-import Account from './Account'
-import Notifications from './Notifications'
 import useUserStore from '../../store/userStore'
 import { resetTokens } from '../../utils/tokenHelper'
 import graphqlRequestClient from '../../services/api'
+import HomeStack from '../../navigation/stacks/HomeStack'
 import { useMeQuery } from '../../services/api/fifoServer'
 import DrawerUserInfo from '../../components/DrawerUserInfo'
+import ProfileStack from '../../navigation/stacks/ProfileStack'
+import SettingsStack from '../../navigation/stacks/SettingsStack'
+import NotificationsStack from '../../navigation/stacks/NotificationsStack'
 
 const Drawer = createDrawerNavigator()
 
@@ -37,10 +37,10 @@ const AppStack = () => {
         )
       }}
     >
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Profile" component={Profile} />
-      <Drawer.Screen name="Notifications" component={Notifications} />
-      <Drawer.Screen name="Account" component={Account} />
+      <Drawer.Screen name="Home" component={HomeStack} />
+      <Drawer.Screen name="Profile" component={ProfileStack} />
+      <Drawer.Screen name="Notifications" component={NotificationsStack} />
+      <Drawer.Screen name="Settings" component={SettingsStack} />
     </Drawer.Navigator>
   )
 }
