@@ -7,7 +7,7 @@ const Stack = createStackNavigator()
 const NotificationsStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Notifications" component={Notifications} />
+      <Stack.Screen name="NotificationsScreen" component={Notifications} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }

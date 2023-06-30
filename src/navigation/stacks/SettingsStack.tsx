@@ -7,7 +7,7 @@ const Stack = createStackNavigator()
 const SettingsStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Settings" component={Account} />
+      <Stack.Screen name="SettingsScreen" component={Account} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }
